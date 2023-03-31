@@ -1,0 +1,163 @@
+﻿@model QTComputer.Models.Product
+
+@{
+    ViewData["Title"] = "CHI TIẾT SẢN PHẨM";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a asp-area="Admin" asp-controller="AdminProducts" asp-action="Index" class="breadcrumb-item">Chi tiết sản phẩm</a>
+            <span class="breadcrumb-item active">Thông tin sản phẩm</span>
+        </nav>
+    </div>
+</div>
+<div class="page-header no-gutters has-tab">
+    <div class="d-md-flex m-b-15 align-items-center justify-content-between">
+        <div class="media align-items-center m-b-15">
+            <div class="avatar avatar-image rounded" style="height:70px; width:70px">
+                <img src="~/images/products/@Model.Thumb" alt="@Model.Title" />
+            </div>
+            <div class="m-l-15">
+                <h4 class="m-b-0">@Model.ProductName</h4>
+                <p class="text-muted m-b-0">ID: #@Model.ProductId</p>
+            </div>
+        </div>
+        <div class="m-b-15">
+            <a class="btn btn-primary" asp-area="Admin" asp-controller="AdminProducts" asp-action="Edit" asp-route-id="@Model.ProductId">Edit</a>
+        </div>
+    </div>
+</div>
+<div class="card-body">
+    <h4 class="card-title">Thông tin sản phẩm</h4>
+    <div class="table table-hover">
+        <table class="product-info-table m-t-20">
+            <tbody>
+                <tr>
+                    <td>ID:</td>
+                    <td class="text-dark font-weight-semibold">@Model.ProductId</td>
+                </tr>
+                <tr>
+                    <td>Tên Sản Phẩm:</td>
+                    <td>@Model.ProductName</td>
+                </tr>
+                <tr>
+                    <td>Tiêu Đề:</td>
+                    <td>@Model.Title</td>
+                </tr>
+                <tr>
+                    <td>Giá:</td>
+                    <td>@Model.Price</td>
+                </tr>
+                <tr>
+                    <td>Giảm giá:</td>
+                    <td>@Model.Discount</td>
+                </tr>
+                <tr>
+                    <td>Danh mục:</td>
+                    <td>@Model.Cat.CatName</td>
+                </tr>
+                <tr>
+                    <td>Tồn Kho:</td>
+                    <td>@Model.UnitsInStock</td>
+                </tr>
+                <tr>
+                    <td>Active:</td>
+                    <td>
+                        @if (@Model.Active)
+                        {
+                            <div class="d-flex align-items-center">
+                                <div class="badge badge-success badge-dot m-r-10"></div>
+                                <div>Active</div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="d-flex align-items-center">
+                                <div class="badge badge-danger badge-dot m-r-10"></div>
+                                <div>Non-Active</div>
+                            </div>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td>HomeFlag:</td>
+                    <td>
+                        @if (@Model.HomeFlag)
+                        {
+                            <div class="d-flex align-items-center">
+                                <div class="badge badge-success badge-dot m-r-10"></div>
+                                <div>TRUE</div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="d-flex align-items-center">
+                                <div class="badge badge-danger badge-dot m-r-10"></div>
+                                <div>FLASE</div>
+                            </div>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td>BestSellers:</td>
+                    <td>
+                        @if (@Model.BestSellers)
+                        {
+                            <div class="d-flex align-items-center">
+                                <div class="badge badge-success badge-dot m-r-10"></div>
+                                <div>TRUE</div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="d-flex align-items-center">
+                                <div class="badge badge-danger badge-dot m-r-10"></div>
+                                <div>FLASE</div>
+                            </div>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ngày tạo:</td>
+                    <td>@Model.DateCreated</td>
+                </tr>
+                <tr>
+                    <td>Ngày chỉnh sửa gần nhất:</td>
+                    <td>@Model.DateModified</td>
+                </tr>
+                <tr>
+                    <td>Metadesc:</td>
+                    <td>@Model.MetaDesc</td>
+                </tr>
+                <tr>
+                    <td>MetaKey:</td>
+                    <td>@Model.MetaKey</td>
+                </tr>
+                <tr>
+                    <td>Alias:</td>
+                    <td>@Model.Alias</td>
+                </tr>
+                <tr>
+                    <td>Mô Tả:</td>
+                    <td>@Model.Description</td>
+                </tr>
+                <tr>
+                    <td>Mô Tả ngắn gọn:</td>
+                    <td>@Model.ShortDesc</td>
+                </tr>
+                <tr>
+                    <td>Thumbnail:</td>
+                    <td>
+                        <img width="200" height="200" src="~/images/products/@Model.Thumb" alt="@Model.Title" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Quay Lại</a>
+</div>
