@@ -165,7 +165,9 @@ namespace QTComputer.Controllers
                     bool isEmail = Utilities.IsValidEmail(customer.UserName);
                     if (!isEmail) return View(customer);
 
-                    var khachhang = _context.Customers.AsNoTracking().SingleOrDefault(x => x.Email.Trim() == customer.UserName);
+                    var khachhang = _context.Customers
+                        .AsNoTracking()
+                        .SingleOrDefault(x => x.Email.Trim() == customer.UserName);
 
                     if (khachhang == null) return RedirectToAction("DangkyTaiKhoan");
                     string pass = (customer.Password + khachhang.Salt.Trim()).ToMD5();
