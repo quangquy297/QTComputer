@@ -13,8 +13,6 @@ public partial class Account
 
     public string? Password { get; set; }
 
-    public string? Salt { get; set; }
-
     public bool Active { get; set; }
 
     public string? FullName { get; set; }

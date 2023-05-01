@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -25,10 +26,15 @@ namespace QTComputer.Areas.Admin.Controllers
         // GET: Admin/AdminRoles
         public async Task<IActionResult> Index()
         {
-              return _context.Roles != null ? 
+            if (!User.Identity.IsAuthenticated)
+            {
+                _notifyService.Error("Có lỗi Index");
+            }
+            return _context.Roles != null ? 
                           View(await _context.Roles.ToListAsync()) :
                           Problem("Entity set 'DbComputerContext.Roles'  is null.");
         }
+
 
         // GET: Admin/AdminRoles/Details/5
         public async Task<IActionResult> Details(int? id)

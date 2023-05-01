@@ -31,7 +31,6 @@ namespace QTComputer.Areas.Admin.Controllers
             var pageSize = 20;
             var lsCustomers = _context.Customers
                 .AsNoTracking()
-                .Include(x => x.Location)
                 .OrderBy(x => x.CreateDate);
             PagedList<Customer> models = new PagedList<Customer>(lsCustomers, pageNumber, pageSize);
 
@@ -68,7 +67,7 @@ namespace QTComputer.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CustomerId,FullName,Birthday,Avatar,Address,Email,Phone,LocationId,District,Ward,CreateDate,Password,Salt,LastLogin,Active")] Customer customer)
+        public async Task<IActionResult> Create([Bind("CustomerId,FullName,Birthday,Avatar,Address,Email,Phone,CreateDate,Password,LastLogin,Active")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -100,7 +99,7 @@ namespace QTComputer.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CustomerId,FullName,Birthday,Avatar,Address,Email,Phone,LocationId,District,Ward,CreateDate,Password,Salt,LastLogin,Active")] Customer customer)
+        public async Task<IActionResult> Edit(int id, [Bind("CustomerId,FullName,Birthday,Avatar,Address,Email,Phone,CreateDate,Password,LastLogin,Active")] Customer customer)
         {
             if (id != customer.CustomerId)
             {

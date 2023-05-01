@@ -39,13 +39,12 @@
                     {
                         foreach (var item in Model)
                         {
-                            string url = $"/{item.Alias}";
+                            string url = $"/{item.Title}";
                             <tr>
                                 <td>@item.CatId</td>
                                 <td>
                                     <a target="_blank" href="@url">@item.CatName</a>
                                 </td>
-                                <td>@item.Ordering</td>
                                 <td>
                                     @if (item.Published == true)
                                     {

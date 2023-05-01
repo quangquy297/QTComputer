@@ -67,7 +67,7 @@ namespace QTComputer.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CatId,CatName,Description,ParentId,Levels,Ordering,Published,Thumb,Title,Alias,MetaDesc,MetaKey,Cover,SchemaMarkup")] Category category, Microsoft.AspNetCore.Http.IFormFile fThumb)
+        public async Task<IActionResult> Create([Bind("CatId,CatName,Description,Published,Thumb,Title")] Category category, Microsoft.AspNetCore.Http.IFormFile? fThumb)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,6 @@ namespace QTComputer.Areas.Admin.Controllers
                     category.Thumb = await Utilities.UploadFile(fThumb, @"category", imageName.ToLower());
                 }
                 if (string.IsNullOrEmpty(category.Thumb)) category.Thumb = "default.jpg";
-                category.Alias = Utilities.SEOUrl(category.CatName);
                 _context.Add(category);
                 await _context.SaveChangesAsync();
                 _notifyService.Success("THÊM MỚI THÀNH CÔNG");
@@ -108,7 +107,7 @@ namespace QTComputer.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CatId,CatName,Description,ParentId,Levels,Ordering,Published,Thumb,Title,Alias,MetaDesc,MetaKey,Cover,SchemaMarkup")] Category category, Microsoft.AspNetCore.Http.IFormFile fThumb)
+        public async Task<IActionResult> Edit(int id, [Bind("CatId,CatName,Description,Published,Thumb,Title")] Category category, Microsoft.AspNetCore.Http.IFormFile? fThumb)
         {
             if (id != category.CatId)
             {

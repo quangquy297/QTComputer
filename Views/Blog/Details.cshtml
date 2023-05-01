@@ -1,8 +1,8 @@
-﻿@model QTComputer.Models.TinDang
+﻿@model QTComputer.Models.News
 @{
     ViewData["Title"] = Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
-    string url = $"/tin-tuc/{Model.Alias}-{Model.PostId}.html";
+    string url = $"/tin-tuc/{Model.Title}-{Model.PostId}.html";
 }
 <main class="main-content">
     <div class="breadcrumb-area breadcrumb-height" data-bg-image="assets/images/breadcrumb/bg/1-1-1920x373.jpg">
@@ -42,7 +42,6 @@
                             <h5 class="title mb-4">
                                 <a href="@url">@Model.Title</a>
                             </h5>
-                            <p class="short-desc mb-4 mb-7">@Model.Scontents</p>
                             @Html.Raw(Model.Contents)
                             <div class="tag-wtih-social">
                                 <div class="tag">

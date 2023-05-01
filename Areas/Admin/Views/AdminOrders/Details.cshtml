@@ -71,7 +71,7 @@
                                     int i = 1;
                                     foreach (var item in orderDetails)
                                     {
-                                        string url = $"/{item.Product.Alias}-{item.Product.ProductId}.html";
+                                        string url = $"/{item.Product.Title}-{item.Product.ProductId}.html";
                                         <tr>
                                             <th>@i</th>
                                             <td><a target="_blank" href="@url">@item.Product.ProductName</a></td>
@@ -82,8 +82,6 @@
                                         i++;
                                     }
                                 }
-
-
                             </tbody>
                         </table>
                     </div>
@@ -95,7 +93,12 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
+    <form asp-area="Admin" asp-controller="AdminOrders" asp-action="Delete" asp-route-id="@Model.OrderId" class="float-right text-right">
+        <input type="hidden" asp-for="OrderId" />
+        <input type="submit" value="Xóa đơn hàng" class="btn btn-danger" />
+    </form>
 </div>

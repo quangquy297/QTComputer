@@ -47,7 +47,7 @@ namespace QTComputer.Areas.Admin.Controllers
                 .Include(x => x.Cat)
                 .OrderByDescending(x => x.ProductId).ToList();
             }
-            PagedList<Product> models = new PagedList<Product>(lsProducts.AsQueryable(), pageNumber, Utilities.PAGE_SIZE);
+            List<Product> models = new List<Product>(lsProducts.AsQueryable());
             ViewBag.CurrentCateID = CatID;
             ViewBag.CurrentPage = pageNumber;
             ViewData["DanhMuc"] = new SelectList(_context.Categories, "CatId", "CatName", CatID);
@@ -85,7 +85,7 @@ namespace QTComputer.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,ProductName,ShortDesc,Description,CatId,Price,Discount,Thumb,Video,DateCreated,DateModified,BestSellers,HomeFlag,Active,Tags,Title,Alias,MetaDesc,MetaKey,UnitsInStock")] Product product, Microsoft.AspNetCore.Http.IFormFile fThumb)
+        public async Task<IActionResult> Create([Bind("ProductId,ProductName,ShortDesc,Description,CatId,Price,Thumb,DateCreated,DateModified,Title,UnitsInStock")] Product product, Microsoft.AspNetCore.Http.IFormFile? fThumb)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +97,6 @@ namespace QTComputer.Areas.Admin.Controllers
                     product.Thumb = await Utilities.UploadFile(fThumb, @"products", image.ToLower());
                 }
                 if (string.IsNullOrEmpty(product.Thumb)) product.Thumb = "default.jpg";
-                product.Alias = Utilities.SEOUrl(product.ProductName);
                 product.DateModified = DateTime.Now;
                 product.DateCreated = DateTime.Now;
 
@@ -132,7 +131,7 @@ namespace QTComputer.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductName,ShortDesc,Description,CatId,Price,Discount,Thumb,Video,DateCreated,DateModified,BestSellers,HomeFlag,Active,Tags,Title,Alias,MetaDesc,MetaKey,UnitsInStock")] Product product, Microsoft.AspNetCore.Http.IFormFile fThumb)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductName,ShortDesc,Description,CatId,Price,Thumb,DateCreated,DateModified,Title,UnitsInStock")] Product product, Microsoft.AspNetCore.Http.IFormFile? fThumb)
         {
             if (id != product.ProductId)
             {
@@ -151,7 +150,6 @@ namespace QTComputer.Areas.Admin.Controllers
                         product.Thumb = await Utilities.UploadFile(fThumb, @"products", image.ToLower());
                     }
                     if (string.IsNullOrEmpty(product.Thumb)) product.Thumb = "default.jpg";
-                    product.Alias = Utilities.SEOUrl(product.ProductName);
                     product.DateModified = DateTime.Now;
 
                     _context.Update(product);

@@ -1,0 +1,85 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<QTComputer.Models.News>
+@{
+    int CurrentPage = ViewBag.CurrentPage;
+    ViewData["Title"] = "Danh sách Tin" + CurrentPage;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <span class="breadcrumb-item active">Danh sách tin : Trang @CurrentPage</span>
+        </nav>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="row m-b-30">
+            <div class="col-lg-8">
+                <a class="btn btn-primary" asp-controller="AdminNews" asp-action="Create">
+                    <i class="anticon anticon-plus-circle m-r-5"></i>
+                    <span>Thêm tin tức</span>
+                </a>
+                <div class="col-lg-4 text-right">
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table id="data-table" class="table table-hover e-commerce-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tiêu Đề</th>
+                        <th>Trạng Thái</th>
+                        <th>#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.PostId</td>
+                                <td>@item.Title</td>
+                                <td>
+                                    @if (item.Published)
+                                    {
+                                        <div class="d-flex align-items-center">
+                                            <div class="badge badge-success badge-dot m-r-10"></div>
+                                            <div>Public</div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="d-flex align-items-center">
+                                            <div class="badge badge-danger badge-dot m-r-10"></div>
+                                            <div>Non-Public</div>
+                                        </div>
+                                    }
+                                </td>
+                                <td>
+                                    <a class="btn btn-success m-r-5" asp-area="Admin" asp-controller="AdminNews" asp-action="Details" asp-route-id="@item.PostId">View</a>
+                                    <a class="btn btn-primary m-r-5" asp-area="Admin" asp-controller="AdminNews" asp-action="Edit" asp-route-id="@item.PostId">Edit</a>
+                                    <a class="btn btn-secondary m-r-5" asp-area="Admin" asp-controller="AdminNews" asp-action="Delete" asp-route-id="@item.PostId">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts{
+
+    <script>
+
+        var js = jQuery.noConflict(true);
+        $(document).ready(function () {
+            $('#data-table').DataTable();
+        });
+    </script>
+
+}

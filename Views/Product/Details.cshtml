@@ -99,7 +99,7 @@
                                     <span class="title">DANH MỤC :</span>
                                     <ul>
                                         <li>
-                                            <a href="/danhmuc/@Model.Cat.Alias">@Model.Cat.CatName</a>
+                                            <a href="/danhmuc/@Model.Cat.Title">@Model.Cat.CatName</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -324,7 +324,7 @@
                                 {
                                     foreach (var item in lsProducts)
                                     {
-                                        string url = $"/{item.Alias}-{item.ProductId}";
+                                        string url = $"/{item.Title}-{item.ProductId}";
                                         <div class="swiper-slide">
                                             <div class="product-item">
                                                 <div class="product-img img-zoom-effect">

@@ -6,8 +6,7 @@ namespace QTComputer.ModelViews
 {
     public class HomeVM
     {
-        public List<TinDang> TinTucs { get; set; }
+        public List<News> TinTuc { get; set; }
         public List<ProductHomeVM> Products { get; set; }
-        public QuangCao quangcao { get; set; }
     }
 }

@@ -15,18 +15,21 @@ namespace QTComputer.Controllers
             _context = context;
         }
         [Route("/san-pham", Name = "Product")]
-        public IActionResult Index(int? page)
+        public IActionResult Index(string? keyword)
         {
             try
             {
-                var pageNumber = page == null || page <= 0 ? 1 : page.Value;
-                var pageSize = Utilities.PAGE_SIZE;
                 var lsProducts = _context.Products
                     .AsNoTracking()
                     .OrderByDescending(x => x.DateCreated);
-                PagedList<Product> models = new PagedList<Product>(lsProducts, pageNumber, pageSize);
-
-                ViewBag.CurrentPage = pageNumber;
+                if (!String.IsNullOrEmpty(keyword))
+                {
+                     lsProducts = _context.Products
+                    .AsNoTracking()
+                    .Where(x => x.ProductName.Contains(keyword))
+                    .OrderByDescending(x => x.DateCreated);
+                }
+                List<Product> models = new List<Product>(lsProducts);
                 return View(models);
             }
             catch (Exception)
@@ -36,19 +39,18 @@ namespace QTComputer.Controllers
 
         }
         [Route("danhmuc/{Alias}", Name = ("ListProduct"))]
-        public IActionResult List(string alias, int page = 1)
+        public IActionResult List(string title)
         {
             try
             {
-                var pageSize = 10;
-                var danhMuc = _context.Categories.AsNoTracking().SingleOrDefault(x => x.Alias == alias);
+                var danhMuc = _context.Categories.AsNoTracking().SingleOrDefault(x => x.Title == title);
 
                 var lsProducts = _context.Products
                     .AsNoTracking()
                     .Where(x => x.CatId == danhMuc.CatId)
                     .OrderByDescending(x => x.DateCreated);
-                PagedList<Product> models = new PagedList<Product>(lsProducts, page, pageSize);
-                ViewBag.CurrentPage = page;
+                List<Product> models = new List<Product>(lsProducts);
+                
                 ViewBag.CurrentCat = danhMuc;
                 return View(models);
             }
@@ -72,7 +74,7 @@ namespace QTComputer.Controllers
 
                 var lsProduct = _context.Products
                     .AsNoTracking()
-                    .Where(x => x.CatId == product.CatId && x.ProductId != id && x.Active == true)
+                    .Where(x => x.CatId == product.CatId && x.ProductId != id)
                     .Take(4)
                     .OrderByDescending(x => x.DateCreated)
                     .ToList();
@@ -84,8 +86,6 @@ namespace QTComputer.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-
-
         }
     }
 }

@@ -12,19 +12,19 @@
     <div class="swiper-container main-slider swiper-arrow with-bg_white">
         <div class="swiper-wrapper">
             <div class="swiper-slide animation-style-01">
-                <div class="slide-inner bg-height" data-bg-image="/assets/images/slider/bg/1-1.jpg">
+                <div class="slide-inner bg-height" data-bg-image="/assets/images/slider/bg/bg1.jpg">
                     <div class="parallax-img-wrap">
-                        <div class="chilly">
+@*                        <div class="chilly">
                             <div class="scene fill">
-                                <div class="expand-width" data-depth="0.2">
-                                    <img src="/assets/images/slider/inner-img/ot.png" alt="Inner Image">
+                                <div class="expand-width" data-depth="0.5">
+                                    <img src="/assets/images/slider/inner-img/pc2.png" alt="Inner Image">
                                 </div>
                             </div>
-                        </div>
+                        </div>*@
                         <div class="avocado">
                             <div class="scene fill">
                                 <div class="expand-width" data-depth="0.5">
-                                    <img src="/assets/images/slider/inner-img/qua-bo.png" alt="Inner Image">
+                                    <img height=70% width=70% src="/assets/images/slider/inner-img/laptop.png" alt="Inner Image">
                                 </div>
                             </div>
                         </div>
@@ -32,17 +32,17 @@
                     <div class="container">
                         <div class="parallax-with-content">
                             <div class="slide-content">
-                                <span class="sub-title mb-3">Natural & Organic</span>
-                                <h2 class="title mb-9">Hân hạnh được phục vụ</h2>
+                                <span class="sub-title mb-3" style="color:aliceblue">Q&T Computer</span>
+                                <h2 class="title mb-9" style="color:aliceblue">Hân hạnh được phục vụ</h2>
                                 <div class="button-wrap">
-                                    <a class="btn btn-custom-size lg-size btn-primary btn-white-hover rounded-0" href="shop.html">Mua ngay</a>
+                                    <a class="btn btn-custom-size lg-size btn-primary btn-white-hover rounded-0" href="san-pham">Mua ngay</a>
                                 </div>
                             </div>
                             <div class="parallax-img-wrap">
                                 <div class="tomatoes">
                                     <div class="scene fill">
                                         <div class="expand-width" data-depth="0.5">
-                                            <img src="/assets/images/slider/inner-img/otchuong.png" alt="Inner Image">
+                                            <img src="/assets/images/slider/inner-img/pc2.png" alt="Inner Image">
                                         </div>
                                     </div>
                                 </div>
@@ -52,19 +52,19 @@
                 </div>
             </div>
             <div class="swiper-slide animation-style-01">
-                <div class="slide-inner bg-height" data-bg-image="/assets/images/slider/bg/1-1.jpg">
+                <div class="slide-inner bg-height" data-bg-image="/assets/images/slider/bg/bg1.jpg">
                     <div class="parallax-img-wrap">
-                        <div class="chilly">
+                        @*<div class="chilly">
                             <div class="scene fill">
                                 <div class="expand-width" data-depth="0.2">
-                                    <img src="/assets/images/slider/inner-img/ot.png" alt="Inner Image">
+                                    <img height=70% width=70% src="/assets/images/slider/inner-img/laptop2.png" alt="Inner Image">
                                 </div>
                             </div>
-                        </div>
+                        </div>*@
                         <div class="avocado">
                             <div class="scene fill">
                                 <div class="expand-width" data-depth="0.5">
-                                    <img src="/assets/images/slider/inner-img/qua-bo.png" alt="Inner Image">
+                                    <img src="/assets/images/slider/inner-img/laptop3.png" alt="Inner Image">
                                 </div>
                             </div>
                         </div>
@@ -72,17 +72,17 @@
                     <div class="container">
                         <div class="parallax-with-content">
                             <div class="slide-content">
-                                <span class="sub-title mb-3">Natural & Organic</span>
-                                <h2 class="title mb-9">Hân hạnh được phục vụ</h2>
+                                <span class="sub-title mb-3" style="color:aliceblue">Q&T Computer</span>
+                                <h2 class="title mb-9" style="color:aliceblue">Hân hạnh được phục vụ</h2>
                                 <div class="button-wrap">
-                                    <a class="btn btn-custom-size lg-size btn-primary btn-white-hover rounded-0" href="shop.html">Mua ngay</a>
+                                    <a class="btn btn-custom-size lg-size btn-primary btn-white-hover rounded-0" href="sản phẩm">Mua ngay</a>
                                 </div>
                             </div>
                             <div class="parallax-img-wrap">
                                 <div class="tomatoes">
                                     <div class="scene fill">
                                         <div class="expand-width" data-depth="0.5">
-                                            <img src="/assets/images/slider/inner-img/otchuongdo.png" alt="Inner Image">
+                                            <img src="/assets/images/slider/inner-img/laptop2.png" alt="Inner Image">
                                         </div>
                                     </div>
                                 </div>
@@ -160,7 +160,7 @@
                     @foreach (var item in Model.Products)
                     {
                         <li class="nav-item" role="presentation">
-                            <a id="fresh-fruits-tab" data-bs-toggle="tab" href="#@item.category.Alias" role="tab" aria-controls="fresh-fruits" aria-selected="false">
+                            <a id="fresh-fruits-tab" data-bs-toggle="tab" href="#@item.category.Title" role="tab" aria-controls="fresh-fruits" aria-selected="false">
                                 <div class="product-tab-icon">
                                     <img style="width:80%;height:auto" src="~/images/category/@item.category.Thumb" alt="@item.category.Title">
                                 </div>
@@ -175,7 +175,7 @@
                     </div>
                     @foreach (var item in Model.Products)
                     {
-                        <div class="tab-pane fade" id="@item.category.Alias" role="tabpanel" aria-labelledby="fresh-fruits-tab">
+                        <div class="tab-pane fade" id="@item.category.Title" role="tabpanel" aria-labelledby="fresh-fruits-tab">
                             @await Html.PartialAsync("_ListProductPartialView", item.lsProducts)
                         </div>
                     }
@@ -190,49 +190,10 @@
 <!-- Product Area End Here -->
 
 
-<div class="banner-area banner-style-2 section-space-y-axis-100" data-bg-image="/assets/images/product/pngtree.jpg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="banner-content">
-                    <div class="section-title">
-                        <span class="sub-title text-danger">Khuyến mãi đặc biệt</span>
-                        <h3 class="title font-size-40 mb-7 text-success">Giảm giá 20% các loại trong tháng 4</h3>
-                    </div>
-                    
-                    <div class="countdown-wrap with-dark-border">
-                        <div class="countdown item-4" data-countdown="2022/04/01" data-format="short">
-                            <div class="countdown__item me-3">
-                                <span class="countdown__time daysLeft"></span>
-                                <span class="countdown__text ">Ngày</span>
-                            </div>
-                            <div class="countdown__item me-3">
-                                <span class="countdown__time hoursLeft"></span>
-                                <span class="countdown__text ">Giờ</span>
-                            </div>
-                            <div class="countdown__item me-3">
-                                <span class="countdown__time minsLeft"></span>
-                                <span class="countdown__text ">Phút</span>
-                            </div>
-                            <div class="countdown__item">
-                                <span class="countdown__time secsLeft"></span>
-                                <span class="countdown__text">Giây</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="button-wrap pt-10">
-                        <a class="btn btn-custom-size lg-size btn-primary btn-dark-hover rounded-0" href="shop.html">Mua hàng ngay</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 
 <!-- Begin Blog Area -->
-@if (Model.TinTucs != null && Model.TinTucs.Count() > 0)
+@if (Model.TinTuc != null && Model.TinTuc.Count() > 0)
 {
     <div class="blog-area section-space-y-axis-100">
         <div class="container">
@@ -244,9 +205,9 @@
                 <div class="col-lg-12">
                     <div class="swiper-container blog-slider">
                         <div class="swiper-wrapper">
-                            @foreach (var item in Model.TinTucs)
+                            @foreach (var item in Model.TinTuc)
                             {
-                                string url = $"/tin-tuc/{item.Alias}-{item.PostId}.html";
+                                string url = $"/tin-tuc/{item.Title}-{item.PostId}.html";
                                 <div class="swiper-slide">
                                     <div class="blog-item">
                                         <div class="blog-img img-zoom-effect">
@@ -271,7 +232,6 @@
                                             <h5 class="title mb-4">
                                                 <a href="@url">@item.Title</a>
                                             </h5>
-                                            <p class="short-desc mb-5">@item.Scontents</p>
                                             <div class="button-wrap">
                                                 <a class="btn btn-custom-size btn-dark btn-lg rounded-0" href="blog-detail-left-sidebar.html">Đọc thêm</a>
                                             </div>

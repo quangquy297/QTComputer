@@ -10,7 +10,7 @@
             <ul class="minicart-list">
                 @foreach (var item in Model)
                 {
-                    string url = $"/{item.product.Alias}-{item.product.ProductId}";
+                    string url = $"/{item.product.Title}-{item.product.ProductId}";
                     <li class="minicart-product">
                         <a href="@url" class="product-item_img">
                             <img class="img-full" src="~/images/products/@item.product.Thumb" alt="@item.product.ProductName">
@@ -45,7 +45,7 @@ else
     <div class="harmic-offcanvas-body">
         <div class="minicart-content">
             <div class="minicart-heading">
-                <h4 class="mb-0">Giỏ hàng rỗng</h4>
+                <h4 class="mb-0">KHÔNG CÓ SẢN PHẨM TRONG GIỎ HÀNG</h4>
             </div>
         </div>
     </div>

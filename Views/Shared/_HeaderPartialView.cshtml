@@ -1,38 +1,22 @@
-﻿<header class="main-header_area position-relative">
+﻿@model List<Product>
+
+<header class="main-header_area position-relative">
     <div class="header-top border-bottom d-none d-md-block">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-4">
                     <div class="header-top-left">
                         <ul class="dropdown-wrap text-matterhorn">
-@*                            <li>
-                                <button class="btn btn-link dropdown-toggle ht-btn" type="button" id="languageButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Tiếng Việt
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="languageButton">
-                                    <li><a class="dropdown-item" href="#">English</a></li>
-                                    <li><a class="dropdown-item" href="#">日本語</a></li>
-                                </ul>
-                            </li>
-*@
                             <li>
                                 <i class="fa fa-mobile" style=" font-size: 20px; display: inline-block; position: relative; transform: translateY(2px); "></i>
                                 Liên hệ nhanh
                                 <a href="tel:0354952266">035.495.2266 - Mr.Quý</a>
                             </li>
-                            <li>
 
-                            </li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="header-top text-matterhorn">
-                        <p class="shipping mb-0">
-                            <i class="fa fa-map-marker" aria-hidden="true"></i>
-                            Địa chỉ: 10 Huỳnh Văn Nghệ, Bửu Long, Thành phố Biên Hòa, Đồng Nai
-                        </p>
-                    </div>
                 </div>
                 <div class="col-4">
                     <div class="header-top-right text-matterhorn">
@@ -48,36 +32,39 @@
                 <div class="col-lg-12">
                     <div class="header-middle-wrap">
                         <a href="/" class="header-logo">
-                            <img src="~/assets/images/logo/dark.png" alt="Shop hoa quả">
+                            <img style="display: block; margin-left: auto; margin-right: auto; width:50%" src="~/assets/images/logo/qtlogo.png" alt="Computer Store">
                         </a>
                         <div class="header-search-area d-none d-lg-block">
-                            <form class="header-searchbox">
+                            <form class="header-searchbox" asp-controller="Product" asp-action="Index">
+                                <select class="nice-select select-search-category wide" style="display: none;" onchange="location = this.value;">
+                                    <option selected>Danh mục</option>
+                                    
+                                    @if (Model != null)
+                                    {
+                                        @foreach (var item in Model)
+                                        {
+                                            <option value="@Url.Action("Index", "Product", new { id = item.CatId })">@item.Cat.CatName</option>
+
+                                        }
+                                    }
+                                </select>
+@*                                <div class="nice-select select-search-category wide" tabindex="0">
+                                    <span class="current">All Category</span>
+                                    <ul class="list">
+                                        <li data-value="all" class="option selected focus">All Category</li>
+                                        <li data-value="product-item" class="option">Product Item</li>
+                                        <li data-value="product-item-2" class="option">Product Item 02</li>
+                                        <li data-value="product-item-3" class="option">Product Item 03</li>
+                                        <li data-value="product-item-4" class="option">Product Item 04</li>
+                                        <li data-value="product-item-5" class="option">Product Item 05</li>
+                                    </ul>
+                                </div>*@
                                 <input id="keyword" name="keyword" class="input-field" type="text" placeholder="Tìm kiếm sản phẩm">
                                 <button class="btn btn-outline-whisper btn-primary-hover" type="submit"><i class="pe-7s-search"></i></button>
                             </form>
-                            <div id="records_table" class="results-box">
-                            </div>
-
-
-                            @*<div>
-                            <i class="prefix-icon anticon anticon-search opacity-04"></i>
-                            <input id="keyword" name="keyword" type="text" class="form-control" placeholder="Tìm kiếm sản phẩm">
-                            </div>
-                            <div class="table-responsive">
-                            <table class="table table-hover e-commerce-table">
-                            <tbody id="records_table">
-                            </tbody>
-                            </table>
-                            </div>*@
-
-
-
-
-
-
                         </div>
                         <div class="header-right">
-                            <ul>
+                            <ul style="text-align:center">
                                 <li class="dropdown d-none d-md-block">
                                     <button class="btn btn-link dropdown-toggle ht-btn p-0" type="button" id="settingButton" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="pe-7s-users"></i>
@@ -95,11 +82,7 @@
                                         }
                                     </ul>
                                 </li>
-                                <li class="d-none d-md-block">
-                                    <a href="#">
-                                        <i class="pe-7s-like"></i>
-                                    </a>
-                                </li>
+
                                 <li class="d-block d-lg-none">
                                     <a href="#" class="search-btn toolbar-btn">
                                         <i class="pe-7s-search"></i>
@@ -120,7 +103,7 @@
             </div>
         </div>
     </div>
-    <div class="main-header header-sticky" data-bg-color="#bac34e">
+    <div class="main-header header-sticky" data-bg-color="#e20d0d">
         <div class="container">
             <div class="main-header_nav position-relative">
                 <div class="row align-items-center">
@@ -135,13 +118,13 @@
                                         <a href="/gioi-thieu">Về chúng tôi</a>
                                     </li>
                                     <li>
-                                        <a asp-controller="Product" asp-action="Index">Shop</a>
+                                        <a asp-controller="Product" asp-action="Index">Sản phẩm</a>
                                     </li>
                                     <li>
                                         <a href="/page/huong-dan-mua-hang">Hướng dẫn mua hàng</a>
                                     </li>
                                     <li>
-                                        <a href="/Blogs">Blog</a>
+                                        <a href="/tin-tuc">Tin tức</a>
                                     </li>
                                     <li>
                                         <a href="/lien-he">Liên hệ</a>
@@ -199,11 +182,6 @@
                                     <li><a class="dropdown-item" href="/dang-nhap">Đăng nhập</a></li>
                                 }
                             </ul>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="pe-7s-like"></i>
-                            </a>
                         </li>
                     </ul>
                 </div>
@@ -331,11 +309,6 @@
                                             <li>
                                                 <a href="cart">
                                                     <span class="mm-text">Shopping Cart</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="wishlist">
-                                                    <span class="mm-text">Wishlist</span>
                                                 </a>
                                             </li>
                                             <li>
@@ -474,27 +447,3 @@
     </div>
     <div class="global-overlay"></div>
 </header>
-
-@section Scripts{
-    @*<script>*@
-    @*$(document).ready(function () {
-            $("#keyword").keyup(function () {
-            var strkeyword = $('#keyword').val();
-            $.ajax({
-                url: '/Search/FindProduct/',
-                datatype: "json",
-                type: "POST",
-                data: { keyword: strkeyword },
-                async: true,
-                success: function (results) {
-                    $("#records_table")("");
-                    $("#records_table")(results);
-                },
-                error: function (xhr) {
-                    alert('error');
-                }
-            });
-        });
-        });*@
-
-}

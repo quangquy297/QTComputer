@@ -24,15 +24,15 @@
                         </tr>
                         <tr>
                             <td>Khách hàng:</td>
-                            <td>@Model.Customer.FullName</td>
+                            <td>@Html.DisplayFor(model => model.Customer.FullName)</td>
                         </tr>
                         <tr>
                             <td>Số điện thoại:</td>
-                            <td>@Model.Customer.Phone</td>
+                            <td>@Html.DisplayFor(model => model.Customer.Phone)</td>
                         </tr>
                         <tr>
                             <td>Địa chỉ:</td>
-                            <td>@Model.Customer.Address</td>
+                            <td>@Html.DisplayFor(model => model.Customer.Address)</td>
                         </tr>
                         <tr>
                             <td>Tổng tiền:</td>
@@ -61,13 +61,12 @@
                         <label>Đã thanh toán</label>
                         <input asp-for="Paid" type="checkbox" />
                         <span asp-validation-for="Paid" class="text-danger"></span>
-                    </div>
+                    </div><hr />
                     <div class="form-group">
                         <label>Đơn hàng bị hủy</label>
                         <input asp-for="Deleted" type="checkbox" />
                         <span asp-validation-for="Deleted" class="text-danger"></span>
                     </div>
-
                 </div>
                 <button type="submit" class="btn btn-success">Lưu thay đổi</button>
             </form>

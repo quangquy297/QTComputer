@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +19,7 @@ namespace QTComputer.Areas.Admin.Controllers
         public AdminAccountsController(DbComputerContext context, INotyfService notifyService)
         {
             _context = context;
-            _notifyService= notifyService;
+            _notifyService = notifyService;
         }
 
         // GET: Admin/AdminAccounts
@@ -55,6 +56,7 @@ namespace QTComputer.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminAccounts/Create
+
         public IActionResult Create()
         {
             ViewData["QuyenTruyCap"] = new SelectList(_context.Roles, "RoleId", "RoleName");
@@ -66,7 +68,8 @@ namespace QTComputer.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AccountId,Phone,Email,Password,Salt,Active,FullName,RoleId,LastLogin,CreateDate")] Account account)
+
+        public async Task<IActionResult> Create([Bind("AccountId,Phone,Email,Password,Active,FullName,RoleId,LastLogin,CreateDate")] Account account)
         {
             if (ModelState.IsValid)
             {
@@ -84,6 +87,7 @@ namespace QTComputer.Areas.Admin.Controllers
 
 
         // GET: Admin/AdminAccounts/Edit/5
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Accounts == null)
@@ -105,7 +109,7 @@ namespace QTComputer.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AccountId,Phone,Email,Password,Salt,Active,FullName,RoleId,LastLogin,CreateDate")] Account account)
+        public async Task<IActionResult> Edit(int id, [Bind("AccountId,Phone,Email,Password,Active,FullName,RoleId,LastLogin,CreateDate")] Account account)
         {
             if (id != account.AccountId)
             {
@@ -137,6 +141,7 @@ namespace QTComputer.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminAccounts/Delete/5
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Accounts == null)
@@ -169,14 +174,14 @@ namespace QTComputer.Areas.Admin.Controllers
             {
                 _context.Accounts.Remove(account);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool AccountExists(int id)
         {
-          return (_context.Accounts?.Any(e => e.AccountId == id)).GetValueOrDefault();
+            return (_context.Accounts?.Any(e => e.AccountId == id)).GetValueOrDefault();
         }
     }
 }

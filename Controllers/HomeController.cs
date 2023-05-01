@@ -28,7 +28,6 @@ namespace QTComputer.Controllers
             HomeVM model = new HomeVM();
 
             var lsProducts = _context.Products.AsNoTracking()
-                .Where(x => x.Active == true && x.HomeFlag == true)
                 .OrderByDescending(x => x.DateCreated)
                 .ToList();
 
@@ -36,7 +35,7 @@ namespace QTComputer.Controllers
             var lsCats = _context.Categories
                 .AsNoTracking()
                 .Where(x => x.Published == true)
-                .OrderByDescending(x => x.Ordering)
+                .OrderByDescending(x => x.CatId)
                 .ToList();
 
             foreach (var item in lsCats)
@@ -46,19 +45,15 @@ namespace QTComputer.Controllers
                 productHome.lsProducts = lsProducts.Where(x => x.CatId == item.CatId).ToList();
                 lsProductViews.Add(productHome);
 
-                var quangcao = _context.QuangCaos
-                    .AsNoTracking()
-                    .FirstOrDefault(x => x.Active == true);
 
-                var TinTuc = _context.TinDangs
+                var TinTuc = _context.News
                     .AsNoTracking()
-                    .Where(x => x.Published == true && x.IsNewfeed == true)
+                    .Where(x => x.Published == true)
                     .OrderByDescending(x => x.CreatedDate)
                     .Take(3)
                     .ToList();
                 model.Products = lsProductViews;
-                model.quangcao = quangcao;
-                model.TinTucs = TinTuc;
+                model.TinTuc = TinTuc;
                 ViewBag.AllProducts = lsProducts;
             }
             return View(model);

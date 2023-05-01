@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PagedList.Core;
 using QTComputer.Models;
 
 namespace QTComputer.Controllers

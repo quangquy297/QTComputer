@@ -13,11 +13,11 @@ using QTComputer.Models;
 using QTComputer.Extension;
 using QTComputer.ModelViews;
 using QTComputer.Helper;
+using System.Data;
 
 namespace QTComputer.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
     public class AdminOrdersController : Controller
     {
         private readonly DbComputerContext _context;
@@ -29,22 +29,28 @@ namespace QTComputer.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminOrders
-
-        public IActionResult Index(int? page)
+        public async Task<IActionResult> Index()
         {
-            var pageNumber = page == null || page <= 0 ? 1 : page.Value;
-            var pageSize = Utilities.PAGE_SIZE;
-            var Orders = _context.Orders.Include(o => o.Customer).Include(o => o.TransactStatus)
+            var lsOrders = _context.Orders.Include(o => o.Customer).Include(o => o.TransactStatus)
                 .AsNoTracking()
                 .OrderBy(x => x.OrderDate);
-            PagedList<Order> models = new PagedList<Order>(Orders, pageNumber, pageSize);
-
-            ViewBag.CurrentPage = pageNumber;
-
-
-
-            return View(models);
+            return View(await lsOrders.ToListAsync());
         }
+        //public IActionResult Index(int? page)
+        //{
+        //    var pageNumber = page == null || page <= 0 ? 1 : page.Value;
+        //    var pageSize = Utilities.PAGE_SIZE;
+        //    var lsOrders = _context.Orders.Include(o => o.Customer).Include(o => o.TransactStatus)
+        //        .AsNoTracking()
+        //        .OrderBy(x => x.OrderDate);
+        //    //PagedList<Order> models = new PagedList<Order>(lsOrders, pageNumber, pageSize);
+
+        //    ViewBag.CurrentPage = pageNumber;
+
+
+
+        //    return View(lsOrders);
+        //}
 
         // GET: Admin/AdminOrders/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -89,21 +95,26 @@ namespace QTComputer.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["Trangthai"] = new SelectList(_context.TransactStatuses, "TransactStatusId", "Status", order.TransactStatusId);
+            ViewData["TrangThai"] = new SelectList(_context.TransactStatuses, "TransactStatusId", "Status", order.TransactStatusId);
             return PartialView("ChangeStatus", order);
         }
         [HttpPost]
-        public async Task<IActionResult> ChangeStatus(int id, [Bind("OrderId,CustomerId,OrderDate,ShipDate,TransactStatusId,Deleted,Paid,PaymentDate,TotalMoney,PaymentId,Note,Address,LocationId,District,Ward")] Order order)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangeStatus(int id, [Bind("OrderId,CustomerId,OrderDate,ShipDate,TransactStatusId,Deleted,Paid,PaymentDate,TotalMoney,PaymentId,Note,Address")] Order order)
         {
             if (id != order.OrderId)
             {
                 return NotFound();
             }
+            
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var donhang = await _context.Orders.AsNoTracking().Include(x => x.Customer).FirstOrDefaultAsync(x => x.OrderId == id);
+                    var donhang = await _context.Orders
+                        .AsNoTracking()
+                        .Include(x => x.Customer)
+                        .FirstOrDefaultAsync(x => x.OrderId == id);
                     if (donhang != null)
                     {
                         donhang.Paid = order.Paid;
@@ -134,7 +145,8 @@ namespace QTComputer.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Trangthai"] = new SelectList(_context.TransactStatuses, "TransactStatusId", "Status", order.TransactStatusId);
+            ModelState.AddModelError(string.Empty, "Lỗi xảy ra, vui lòng kiểm tra lại");
+            ViewData["TrangThai"] = new SelectList(_context.TransactStatuses, "TransactStatusId", "Status", order.TransactStatusId);
             return PartialView("ChangeStatus", order);
         }
 
@@ -151,7 +163,7 @@ namespace QTComputer.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrderId,CustomerId,OrderDate,ShipDate,TransactStatusId,Deleted,Paid,PaymentDate,TotalMoney,PaymentId,Note,Address,LocationId,District,Ward")] Order order)
+        public async Task<IActionResult> Create([Bind("OrderId,CustomerId,OrderDate,ShipDate,TransactStatusId,Deleted,Paid,PaymentDate,TotalMoney,PaymentId,Note,Address")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -187,7 +199,7 @@ namespace QTComputer.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OrderId,CustomerId,OrderDate,ShipDate,TransactStatusId,Deleted,Paid,PaymentDate,TotalMoney,PaymentId,Note,Address,LocationId,District,Ward")] Order order)
+        public async Task<IActionResult> Edit(int id, [Bind("OrderId,CustomerId,OrderDate,ShipDate,TransactStatusId,Deleted,Paid,PaymentDate,TotalMoney,PaymentId,Note,Address")] Order order)
         {
             if (id != order.OrderId)
             {
@@ -200,6 +212,7 @@ namespace QTComputer.Areas.Admin.Controllers
                 {
                     _context.Update(order);
                     await _context.SaveChangesAsync();
+                    _notyfService.Success("Cập nhật thành công");
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -227,21 +240,19 @@ namespace QTComputer.Areas.Admin.Controllers
                 return NotFound();
             }
             var order = await _context.Orders
-                .Include(o => o.Customer)
-                .Include(o => o.TransactStatus)
-                .FirstOrDefaultAsync(m => m.OrderId == id);
+                .FirstOrDefaultAsync(x => x.OrderId == id);
             if (order == null)
             {
                 return NotFound();
             }
 
-            var Chitietdonhang = _context.OrderDetails
-                .Include(x => x.Product)
-                .AsNoTracking()
-                .Where(x => x.OrderId == order.OrderId)
-                .OrderBy(x => x.OrderDetailId)
-                .ToList();
-            ViewBag.ChiTiet = Chitietdonhang;
+            //var Chitietdonhang = _context.OrderDetails
+            //    .Include(x => x.Product)
+            //    .AsNoTracking()
+            //    .Where(x => x.OrderId == order.OrderId)
+            //    .OrderBy(x => x.OrderDetailId)
+            //    .ToList();
+            //ViewBag.ChiTiet = Chitietdonhang;
 
             return View(order);
         }
@@ -252,10 +263,18 @@ namespace QTComputer.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var order = await _context.Orders.FindAsync(id);
-            order.Deleted = true;
-            _context.Update(order);
+
+            if (order != null)
+            {
+                order.Deleted = true;
+                _context.Update(order);
+                _notyfService.Success("Xóa đơn hàng thành công");
+            }
+            else
+            {
+                _notyfService.Error("Xóa đơn hàng không thành công");
+            }
             await _context.SaveChangesAsync();
-            _notyfService.Success("Xóa đơn hàng thành công");
             return RedirectToAction(nameof(Index));
         }
 

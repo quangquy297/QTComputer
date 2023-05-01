@@ -48,7 +48,6 @@ namespace QTComputer.Controllers
                 model.Phone = khachhang.Phone;
                 model.Address = khachhang.Address;
             }
-            ViewData["lsTinhThanh"] = new SelectList(_context.Locations.Where(x => x.Levels == 1).OrderBy(x => x.Type).ToList(), "Location", "Name");
             ViewBag.GioHang = cart;
             return View(model);
         }
@@ -70,9 +69,6 @@ namespace QTComputer.Controllers
                 model.Phone = khachhang.Phone;
                 model.Address = khachhang.Address;
 
-                khachhang.LocationId = null;
-                khachhang.District = null;
-                khachhang.Ward = null;
                 khachhang.Address = muaHang.Address;
                 _context.Update(khachhang);
                 _context.SaveChanges();
@@ -124,11 +120,9 @@ namespace QTComputer.Controllers
             }
             catch
             {
-                ViewData["lsTinhThanh"] = new SelectList(_context.Locations.Where(x => x.Levels == 1).OrderBy(x => x.Type).ToList(), "Location", "Name");
                 ViewBag.GioHang = cart;
                 return View(model);
             }
-            ViewData["lsTinhThanh"] = new SelectList(_context.Locations.Where(x => x.Levels == 1).OrderBy(x => x.Type).ToList(), "Location", "Name");
             ViewBag.GioHang = cart;
             return View(model);
         }
@@ -152,30 +146,12 @@ namespace QTComputer.Controllers
                 successVM.DonHangID = donhang.OrderId;
                 successVM.Phone = khachhang.Phone;
                 successVM.Address = khachhang.Address;
-                successVM.PhuongXa = GetNameLocation(donhang.Ward.Value);
-                successVM.TinhThanh = GetNameLocation(donhang.District.Value);
                 return View(successVM);
             }
             catch
             {
                 return View();
             }
-        }
-        public string GetNameLocation(int idlocation)
-        {
-            try
-            {
-                var location = _context.Locations.AsNoTracking().SingleOrDefault(x => x.LocationId == idlocation);
-                if (location != null)
-                {
-                    return location.NameWithType;
-                }
-            }
-            catch
-            {
-                return string.Empty;
-            }
-            return string.Empty;
         }
     }
 }

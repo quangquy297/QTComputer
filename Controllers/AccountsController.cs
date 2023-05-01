@@ -104,7 +104,6 @@ namespace QTComputer.Controllers
                         Email = taikhoan.Email.Trim().ToLower(),
                         Password = (taikhoan.Password + salt.Trim()).ToMD5(),
                         Active = true,
-                        Salt = salt,
                         CreateDate = DateTime.Now
                     };
                     try
@@ -170,7 +169,7 @@ namespace QTComputer.Controllers
                         .SingleOrDefault(x => x.Email.Trim() == customer.UserName);
 
                     if (khachhang == null) return RedirectToAction("DangkyTaiKhoan");
-                    string pass = (customer.Password + khachhang.Salt.Trim()).ToMD5();
+                    string pass = customer.Password.ToMD5();
                     if (khachhang.Password != pass)
                     {
                         _notyfService.Success("Thông tin đăng nhập chưa chính xác");
@@ -236,9 +235,9 @@ namespace QTComputer.Controllers
                 {
                     var taikhoan = _context.Customers.Find(Convert.ToInt32(taikhoanID));
                     if (taikhoan == null) return RedirectToAction("Login", "Accounts");
-                    var pass = (model.PasswordNow.Trim() + taikhoan.Salt.Trim()).ToMD5();
+                    var pass = model.PasswordNow.Trim().ToMD5();
                     {
-                        string passnew = (model.Password.Trim() + taikhoan.Salt.Trim()).ToMD5();
+                        string passnew = model.Password.Trim().ToMD5();
                         taikhoan.Password = passnew;
                         _context.Update(taikhoan);
                         _context.SaveChanges();
@@ -254,6 +253,12 @@ namespace QTComputer.Controllers
             }
             _notyfService.Success("Thay đổi mật khẩu không thành công");
             return RedirectToAction("Dashboard", "Accounts");
+        }
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }

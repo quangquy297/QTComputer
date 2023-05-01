@@ -47,5 +47,23 @@ namespace QTComputer.Areas.Admin.Controllers
             }
             
         }
+        [HttpPost]
+        public async Task<IActionResult> SearchProduct(string searchString)
+        {
+            List<Product> ls = new List<Product>();
+            if (_context.Products == null)
+            {
+                return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
+            }
+
+            var products = from p in _context.Products
+                         select p;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(s => s.Title!.Contains(searchString));
+            }
+            return View(await products.ToListAsync());
+
+        }
     }
 }

@@ -1,5 +1,4 @@
-﻿@using PagedList.Core.Mvc
-@model PagedList.Core.IPagedList<QTComputer.Models.Product>
+﻿@model IEnumerable<QTComputer.Models.Product>
 
 @{
     int CurrentPage = ViewBag.CurrentPage;
@@ -73,6 +72,8 @@
                         </tr>
                     }
                 }
+                @await Html.PartialAsync("_CreateProduct")
+
             </tbody>
         </table>
     </div>
@@ -81,11 +82,10 @@
 
     <script>
         var js =jQuery.noConflict(true);
-        $(document).ready(function () {
-            $('#data-table').DataTable();
+        js(document).ready(function () {
+            js('#data-table').DataTable();
 
         });
     </script>
-
 }
 

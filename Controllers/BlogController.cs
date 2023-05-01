@@ -25,23 +25,24 @@ namespace QTComputer.Controllers
         {
             var pageNumber = page == null || page <= 0 ? 1 : page.Value;
             var pageSize = Utilities.PAGE_SIZE;
-            var lsTinDangs = _context.TinDangs
+            var lsNews = _context.News
                 .AsNoTracking()
                 .OrderBy(x => x.PostId);
-            PagedList<TinDang> models = new PagedList<TinDang>(lsTinDangs, pageNumber, pageSize);
+            PagedList<News> models = new PagedList<News>(lsNews, pageNumber, pageSize);
 
             ViewBag.CurrentPage = pageNumber;
             return View(models);
+
         }
-        [Route("/tin-tuc/{Alias}-{id}.html", Name = "TinChiTiet")]
+        [Route("/tin-tuc/{Title}-{id}.html", Name = "TinChiTiet")]
         public IActionResult Details(int id)
         {
-            var tindang = _context.TinDangs.AsNoTracking().SingleOrDefault(x => x.PostId == id);
-            if (tindang == null)
+            var news = _context.News.AsNoTracking().SingleOrDefault(x => x.PostId == id);
+            if (news == null)
             {
                 return RedirectToAction("Index");
             }
-            return View(tindang);
+            return View(news);
         }
     }
 }

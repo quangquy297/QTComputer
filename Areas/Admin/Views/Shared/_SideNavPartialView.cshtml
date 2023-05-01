@@ -19,7 +19,7 @@
             <li class="nav-item">
                 <a class="dropdown-toggle" asp-area="Admin" asp-controller="AdminOrders" asp-action="Index">
                     <span class="icon-holder">
-                        <i class="anticon anticon-file"></i>
+                        <i class="anticon anticon-bars"></i>
                     </span>
                     <span class="title">Quản lý đơn hàng</span>
                 </a>
@@ -43,27 +43,15 @@
                     </li>
                 </ul>
             </li> @*Quản lý sản phẩm*@
-            <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="#">
+            <li class="nav-item">
+                <a class="dropdown-toggle" asp-area="Admin" asp-controller="AdminCustomers" asp-action="Index">
                     <span class="icon-holder">
                         <i class="anticon anticon-hdd"></i>
                     </span>
                     <span class="title">Quản lý khách hàng</span>
-                    <span class="arrow">
-                        <i class="arrow-icon"></i>
-                    </span>
                 </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a asp-area="Admin" asp-controller="AdminCustomers" asp-action="Index">Quản lý khách hàng</a>
-                    </li>
-                    <li>
-                        <a asp-area="Admin" asp-controller="#" asp-action="Index">Quản lý tỉnh thành</a>
-                    </li>
+            </li>@*Quản lý khách hàng*@
 
-                </ul>
-
-            </li> @*Quản lý khách hàng*@
             <li class="nav-item dropdown">
                 <a class="dropdown-toggle" href="javascript:void(0);">
                     <span class="icon-holder">
@@ -86,28 +74,32 @@
                     </li>
                 </ul>
             </li> @*Doanh số*@
-            <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="javascript:void(0);">
-                    <span class="icon-holder">
-                        <i class="anticon anticon-table"></i>
-                    </span>
-                    <span class="title">Quản lý hệ thống</span>
-                    <span class="arrow">
-                        <i class="arrow-icon"></i>
-                    </span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a asp-area="Admin" asp-controller="AdminAccounts" asp-action="Index">Quản lý tài khoản</a>
-                    </li>
-                    <li>
-                        <a asp-area="Admin" asp-controller="AdminRoles" asp-action="Index">Quản lý quyền truy cập</a>
-                    </li>
+            @if (User.IsInRole("Admin"))
+            {
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" href="javascript:void(0);">
+                        <span class="icon-holder">
+                            <i class="anticon anticon-table"></i>
+                        </span>
+                        <span class="title">Quản lý hệ thống</span>
+                        <span class="arrow">
+                            <i class="arrow-icon"></i>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a asp-area="Admin" asp-controller="AdminAccounts" asp-action="Index">Quản lý tài khoản</a>
+                        </li>
+                        <li>
+                            <a asp-area="Admin" asp-controller="AdminRoles" asp-action="Index">Quản lý quyền truy cập</a>
+                        </li>
 
-                </ul>
-            </li> @*Quản lý hệ thống*@
+                    </ul>
+                </li> @*Quản lý hệ thống*@
+            }
+            
             <li class="nav-item">
-                <a asp-area="Admin" asp-controller="AdminTinDangs" asp-action="Index">
+                <a asp-area="Admin" asp-controller="AdminNews" asp-action="Index">
                     <span class="icon-holder">
                         <i class="anticon anticon-pie-chart"></i>
                     </span>
@@ -121,7 +113,7 @@
             <li class="nav-item">
                 <a asp-area="Admin" asp-controller="AdminPages" asp-action="Index">
                     <span class="icon-holder">
-                        <i class="anticon anticon-lock"></i>
+                        <i class="anticon anticon-paper-clip"></i>
                     </span>
                     <span class="title">Quản lý Pages</span>
                     <span class="arrow">
@@ -129,9 +121,6 @@
                     </span>
                 </a>
             </li> @*Quản lý Pages*@
-            <li>
-                <a asp-area="Admin" asp-controller="Account" asp-action="AdminLogin">Login</a>
-            </li>
         </ul>
     </div>
 </div>

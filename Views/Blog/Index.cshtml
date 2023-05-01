@@ -1,5 +1,5 @@
 ﻿@using PagedList.Core.Mvc
-@model PagedList.Core.IPagedList<QTComputer.Models.TinDang>
+@model PagedList.Core.IPagedList<QTComputer.Models.News>
 @{
     ViewData["TiTle"] = "Blog - " + ViewBag.CurrentPage;
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,16 +8,16 @@
 }
 
 <main class="main-content">
-    <div class="breadcrumb-area breadcrumb-height" data-bg-image="~/assets/images/breadcrumb/bg/1-1-1920x373.jpg">
+    <div class="breadcrumb-area breadcrumb-height" data-bg-image="/assets/images/slider/bg/bg1.jpg">
         <div class="container h-100">
             <div class="row h-100">
-                    <div class="breadcrumb-item">
-                        <h1 class="breadcrumb-heading">Tin nổi bật</h1>
+                    <div class="breadcrumb-item" >
+                    <h1 class="breadcrumb-heading" style="color:aliceblue">TIN TỨC</h1>
                         <ul>
                             <li>
-                                <a href="/">Home <i class="pe-7s-angle-right"></i></a>
+                            <a href="/" style="color:aliceblue">Home <i class="pe-7s-angle-right"></i></a>
                             </li>
-                            <li>Tin nổi bật</li>
+                        <li style="color:aliceblue">TIN TỨC</li>
                         </ul>
                     </div>
             </div>
@@ -30,7 +30,7 @@
                 {
                     foreach (var item in Model)
                     {
-                        string url = $"/tin-tuc/{item.Alias}-{item.PostId}.html";
+                        string url = $"/tin-tuc/{item.Title}-{item.PostId}.html";
                         <div class="col-md-6">
                             <div class="blog-item">
                                 <div class="blog-img img-zoom-effect">

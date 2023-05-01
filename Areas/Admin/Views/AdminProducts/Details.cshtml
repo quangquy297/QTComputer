@@ -52,10 +52,6 @@
                     <td>@Model.Price</td>
                 </tr>
                 <tr>
-                    <td>Giảm giá:</td>
-                    <td>@Model.Discount</td>
-                </tr>
-                <tr>
                     <td>Danh mục:</td>
                     <td>@Model.Cat.CatName</td>
                 </tr>
@@ -64,81 +60,12 @@
                     <td>@Model.UnitsInStock</td>
                 </tr>
                 <tr>
-                    <td>Active:</td>
-                    <td>
-                        @if (@Model.Active)
-                        {
-                            <div class="d-flex align-items-center">
-                                <div class="badge badge-success badge-dot m-r-10"></div>
-                                <div>Active</div>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="d-flex align-items-center">
-                                <div class="badge badge-danger badge-dot m-r-10"></div>
-                                <div>Non-Active</div>
-                            </div>
-                        }
-                    </td>
-                </tr>
-                <tr>
-                    <td>HomeFlag:</td>
-                    <td>
-                        @if (@Model.HomeFlag)
-                        {
-                            <div class="d-flex align-items-center">
-                                <div class="badge badge-success badge-dot m-r-10"></div>
-                                <div>TRUE</div>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="d-flex align-items-center">
-                                <div class="badge badge-danger badge-dot m-r-10"></div>
-                                <div>FLASE</div>
-                            </div>
-                        }
-                    </td>
-                </tr>
-                <tr>
-                    <td>BestSellers:</td>
-                    <td>
-                        @if (@Model.BestSellers)
-                        {
-                            <div class="d-flex align-items-center">
-                                <div class="badge badge-success badge-dot m-r-10"></div>
-                                <div>TRUE</div>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="d-flex align-items-center">
-                                <div class="badge badge-danger badge-dot m-r-10"></div>
-                                <div>FLASE</div>
-                            </div>
-                        }
-                    </td>
-                </tr>
-                <tr>
                     <td>Ngày tạo:</td>
                     <td>@Model.DateCreated</td>
                 </tr>
                 <tr>
                     <td>Ngày chỉnh sửa gần nhất:</td>
                     <td>@Model.DateModified</td>
-                </tr>
-                <tr>
-                    <td>Metadesc:</td>
-                    <td>@Model.MetaDesc</td>
-                </tr>
-                <tr>
-                    <td>MetaKey:</td>
-                    <td>@Model.MetaKey</td>
-                </tr>
-                <tr>
-                    <td>Alias:</td>
-                    <td>@Model.Alias</td>
                 </tr>
                 <tr>
                     <td>Mô Tả:</td>
