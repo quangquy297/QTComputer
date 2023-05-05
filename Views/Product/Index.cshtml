@@ -1,6 +1,6 @@
 ﻿@model List<QTComputer.Models.Product>
 @{
-    ViewData["TiTle"] = "Shop - " + ViewBag.CurrentPage;
+    ViewData["TiTle"] = "SẢN PHẨM";
     Layout = "~/Views/Shared/_Layout.cshtml";
     
 }
@@ -59,7 +59,7 @@
                                 {
                                     foreach (var item in Model)
                                     {
-                                        string url = $"/{item.Title}-{item.ProductId}";
+                                        string url = $"/san-pham/{item.ProductId}";
                                         <div class="col-lg-4 col-sm-6">
                                             <div class="product-item">
                                                 <div class="product-img img-zoom-effect">
@@ -103,7 +103,7 @@
                                 {
                                     foreach (var item in Model)
                                     {
-                                        string url = $"/{item.Title}-{item.ProductId}.html";
+                                        string url = $"/san-pham/{item.ProductId}";
                                         <div class="col-12 pt-6">
                                             <div class="product-item">
                                                 <div class="product-img img-zoom-effect">

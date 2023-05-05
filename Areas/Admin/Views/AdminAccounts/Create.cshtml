@@ -1,52 +1,78 @@
 ﻿@model QTComputer.Models.Account
 
 @{
-    ViewData["Title"] = "Tạo mới tài khoản quản trị";
+    ViewData["Title"] = "Tạo tài khoản quản trị mới";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-
-<div class="card-body">
-    <h4>Tạo mới tài khoản quản trị</h4>
-    <div class="m-t-25" style="max-width: 700px">
-        <form asp-controller="AdminAccounts" asp-action="Create" method="post">
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inputEmail4">Họ và tên</label>
-                    <input type="text" class="form-control" asp-for="FullName" placeholder="Họ và tên">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="inputPassword4">Số điện thoại</label>
-                    <input type="text" class="form-control" asp-for="Phone" placeholder="Số điện thoại">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inputEmail4">Email</label>
-                    <input type="text" class="form-control" asp-for="Email" placeholder="Email">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="inputEmail4">Mật khẩu</label>
-                    <input type="text" class="form-control" asp-for="Password" placeholder="Mật khẩu">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inputPassword4">Quyền truy cập</label>
-                    <select class="form-control" asp-for="RoleId" asp-items="@ViewBag.QuyenTruyCap" required>
-                        <option value="0" disabled selected>Chọn quyền truy cập</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="checkbox">
-                    <input asp-for="Active" type="checkbox">
-                    <label for="Active">Active</label>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Tạo mới</button>
-        </form>
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a asp-area="Admin" asp-controller="AdminAccounts" asp-action="Index" class="breadcrumb-item">Danh sách tài khoản</a>
+            <span class="breadcrumb-item active">Tạo tài khoản mới</span>
+        </nav>
     </div>
-
 </div>
+<form asp-controller="AdminAccounts" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="page-header no-gutters has-tab">
+        <div class="d-md-flex m-b-15 align-items-center justify-content-between">
+            <div class="col-md-8"></div>
+            <div class="m-b-15">
+                <button class="btn btn-primary">
+                    <i class="anticon anticon-plus-circle"></i>
+                    <span>LƯU</span>
+                </button>
+            </div>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#product-edit-basic">THÔNG TIN</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content m-t-15">
+        <div class="tab-pane fade show active" id="product-edit-basic">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Họ và tên</label>
+                            <input type="text" class="form-control" asp-for="FullName" placeholder="Họ và tên">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Số điện thoại</label>
+                            <input type="text" class="form-control" asp-for="Phone" placeholder="Số điện thoại">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Email</label>
+                            <input type="text" class="form-control" asp-for="Email" placeholder="Email">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Mật khẩu</label>
+                            <input type="text" class="form-control" asp-for="Password" placeholder="Mật khẩu">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Quyền truy cập</label>
+                            <select class="form-control" asp-for="RoleId" asp-items="@ViewBag.QuyenTruyCap" required>
+                                <option value="0" disabled selected>Chọn quyền truy cập</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <input asp-for="Active" type="checkbox">
+                            <label for="Active">Active</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

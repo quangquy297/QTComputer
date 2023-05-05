@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PagedList.Core;
+using QTComputer.Helper;
 using QTComputer.Models;
 
 namespace QTComputer.Areas.Admin.Controllers
@@ -27,14 +28,10 @@ namespace QTComputer.Areas.Admin.Controllers
         // GET: Admin/AdminCustomers
         public IActionResult Index(int? page)
         {
-            var pageNumber = page == null || page <= 0 ? 1 : page.Value;
-            var pageSize = 20;
             var lsCustomers = _context.Customers
                 .AsNoTracking()
                 .OrderBy(x => x.CreateDate);
-            PagedList<Customer> models = new PagedList<Customer>(lsCustomers, pageNumber, pageSize);
-
-            ViewBag.CurrentPage = pageNumber;
+            List<Customer> models = new List<Customer>(lsCustomers);
             return View(models);
         }
 
@@ -67,12 +64,20 @@ namespace QTComputer.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CustomerId,FullName,Birthday,Avatar,Address,Email,Phone,CreateDate,Password,LastLogin,Active")] Customer customer)
+        public async Task<IActionResult> Create([Bind("CustomerId,FullName,Birthday,Avatar,Address,Email,Phone,CreateDate,Password,LastLogin,Active")] Customer customer, IFormFile? fAvatar)
         {
             if (ModelState.IsValid)
             {
+                if (fAvatar != null)
+                {
+                    string extension = Path.GetExtension(fAvatar.FileName);
+                    string imageName = Utilities.SEOUrl(customer.FullName) + extension;
+                    customer.Avatar = await Utilities.UploadFile(fAvatar, @"customer", imageName.ToLower());
+                }
+                if (string.IsNullOrEmpty(customer.Avatar)) customer.Avatar = "default.jpg";
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
+                _notifyService.Success("THÊM MỚI THÀNH CÔNG");
                 return RedirectToAction(nameof(Index));
             }
             return View(customer);
@@ -99,7 +104,7 @@ namespace QTComputer.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CustomerId,FullName,Birthday,Avatar,Address,Email,Phone,CreateDate,Password,LastLogin,Active")] Customer customer)
+        public async Task<IActionResult> Edit(int id, [Bind("CustomerId,FullName,Birthday,Avatar,Address,Email,Phone,CreateDate,Password,LastLogin,Active")] Customer customer, IFormFile? fAvatar)
         {
             if (id != customer.CustomerId)
             {
@@ -110,8 +115,17 @@ namespace QTComputer.Areas.Admin.Controllers
             {
                 try
                 {
+                    if (fAvatar != null)
+                    {
+                        string extension = Path.GetExtension(fAvatar.FileName);
+                        string imageName = Utilities.SEOUrl(customer.FullName) + extension;
+                        customer.Avatar = await Utilities.UploadFile(fAvatar, @"customer", imageName.ToLower());
+                    }
+                    if (string.IsNullOrEmpty(customer.Avatar)) customer.Avatar = "default.jpg";
+
                     _context.Update(customer);
                     await _context.SaveChangesAsync();
+                    _notifyService.Success("Chỉnh sửa thành công");
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -144,7 +158,7 @@ namespace QTComputer.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(customer);
+            return PartialView("Delete",customer);
         }
 
         // POST: Admin/AdminCustomers/Delete/5
@@ -163,6 +177,7 @@ namespace QTComputer.Areas.Admin.Controllers
             }
             
             await _context.SaveChangesAsync();
+            _notifyService.Success("Xóa thành công");
             return RedirectToAction(nameof(Index));
         }
 

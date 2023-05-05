@@ -1,7 +1,7 @@
 ﻿@model QTComputer.Models.Category
 
 @{
-    ViewData["Title"] = "Chi tiết Page :" + Model.CatName;
+    ViewData["Title"] = "THÔNG TIN DANH MỤC";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -9,17 +9,16 @@
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
             <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
-            <a asp-area="Admin" asp-controller="AdminCategories" asp-action="Index" class="breadcrumb-item">Danh mục</a>
-            <span class="breadcrumb-item active">@Model.CatName</span>
+            <a asp-area="Admin" asp-controller="AdminCategories" asp-action="Index" class="breadcrumb-item">Danh mục sản phẩm</a>
+            <span class="breadcrumb-item active">Chi tiết danh mục</span>
         </nav>
     </div>
 </div>
-
 <div class="page-header no-gutters has-tab">
     <div class="d-md-flex m-b-15 align-items-center justify-content-between">
         <div class="media align-items-center m-b-15">
             <div class="avatar avatar-image rounded" style="height:70px; width:70px">
-                <img src="~/images/category/@Model.Thumb" alt="@Model.Title" />
+                <img src="~/images/Categories/@Model.Thumb" alt="@Model.Thumb" />
             </div>
             <div class="m-l-15">
                 <h4 class="m-b-0">@Model.CatName</h4>
@@ -31,38 +30,35 @@
         </div>
     </div>
 </div>
+<div class="card-body">
+    <h4 class="card-title">Thông tin danh mục</h4>
+    <div class="table table-hover">
+        <table class="product-info-table m-t-20">
+            <tbody>
+                <tr>
+                    <td>ID:</td>
+                    <td class="text-dark font-weight-semibold">@Model.CatId</td>
+                </tr>
+                <tr>
+                    <td>Tên danh mục:</td>
+                    <td>@Model.CatName</td>
+                </tr>
+                <tr>
+                    <td>Title:</td>
+                    <td>@Model.Title</td>
+                </tr>
+                <tr>
+                    <td>Thumb:</td>
+                    <td>
+                        <img width="200" height="200" src="~/images/Categories/@Model.Thumb" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Published</td>
+                    <td>@Html.DisplayFor(model => model.Published)</td>
+                </tr>
 
-
-<h1>Chi tiết</h1>
-
-<div>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CatName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CatName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.Raw(Model.Description)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Published)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Published)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Thumb)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Thumb)
-        </dd>
-
-
-    </dl>
+            </tbody>
+        </table>
+    </div>
 </div>

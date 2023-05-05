@@ -1,4 +1,4 @@
-﻿@model IEnumerable<QTComputer.Models.Account>
+﻿@model List<QTComputer.Models.Account>
 
 @{
     ViewData["Title"] = "Danh sách tài khoản";
@@ -7,7 +7,7 @@
 <div class="page-header">
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
-            <a asp-area="Admin" asp-controller="AdminAccounts" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a asp-area="Admin" asp-controller="AdminAccounts" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
             <span class="breadcrumb-item active">Danh sách tài khoản</span>
         </nav>
     </div>
@@ -69,9 +69,9 @@
                                     }
                                 </td>
                                 <td>
-                                    <a class="btn btn-success m-r-5" asp-area="Admin" asp-controller="AdminAccounts" asp-action="Details" asp-route-id="@item.RoleId">View</a>
-                                    <a class="btn btn-primary m-r-5" asp-area="Admin" asp-controller="AdminAccounts" asp-action="Edit" asp-route-id="@item.RoleId">Edit</a>
-                                    <a class="btn btn-secondary m-r-5" asp-area="Admin" asp-controller="AdminAccounts" asp-action="Delete" asp-route-id="@item.RoleId">Delete</a>
+                                    <a class="btn btn-success m-r-5" asp-area="Admin" asp-controller="AdminAccounts" asp-action="Details" asp-route-id="@item.AccountId">Chi tiết</a>
+                                    <a class="btn btn-primary m-r-5" asp-area="Admin" asp-controller="AdminAccounts" asp-action="Edit" asp-route-id="@item.AccountId">Sửa</a>
+                                    <a data-target="#modal-delete" data-toggle="modal" class="btn btn-success btn-tone m-r-5" asp-area="Admin" asp-controller="AdminAccounts" asp-action="Delete" asp-route-id="@item.AccountId">Xoá</a>
                                 </td>
                             </tr>
                         }
@@ -81,15 +81,25 @@
         </div>
     </div>
 </div>
+<div id="modal-delete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
 @section Scripts{
-
     <script>
-
         var js = jQuery.noConflict(true);
-        $(document).ready(function () {
-            $('#data-table').DataTable();
-
+        js(document).ready(function () {
+            js('#data-table').DataTable();
         });
     </script>
-
+    <script>
+        $('#modal-delete').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var url = button.attr("href");
+            var modal = $(this);
+            modal.find('.modal-content').load(url);
+        });
+    </script>
 }

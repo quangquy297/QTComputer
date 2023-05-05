@@ -130,24 +130,22 @@
 </main>
 @section Scripts{
     <script>
-        
         $(document).ready(function () {
             $(".xemdonhang").click(function () {
-                var madonhang = $(this).attr("data-madonhang")
+                var madonhang = $(this).attr("data-madonhang");
                 $.ajax({
-                    
                     url: '/DonHang/Details',
-                    dataType: "json",
+                    dataType: "html",
                     type: "POST",
                     data: { id: madonhang },
                     async: true,
                     success: function (results) {
-                        lert('Successfully called');
                         $("#records_table").html("");
                         $("#records_table").html(results);
                     },
                     error: function (jqxhr, status, exception) {
                         alert('Exception:', exception);
+                        console.log('Error:', exception);
                     }
                 });
             });

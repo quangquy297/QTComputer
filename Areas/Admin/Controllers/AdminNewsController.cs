@@ -25,16 +25,13 @@ namespace QTComputer.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminNews
-        public IActionResult Index(int? page)
+        public IActionResult Index()
         {
-            var pageNumber = page == null || page <= 0 ? 1 : page.Value;
-            var pageSize = Utilities.PAGE_SIZE;
             var lsNews = _context.News
                 .AsNoTracking()
                 .OrderBy(x => x.PostId);
-            PagedList<News> models = new PagedList<News>(lsNews, pageNumber, pageSize);
+            List<News> models = new List<News>(lsNews);
 
-            ViewBag.CurrentPage = pageNumber;
             return View(models);
         }
 
@@ -67,12 +64,22 @@ namespace QTComputer.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PostId,Title,Contents,Thumb,Published,Alias,CreatedDate,Author,AccountId,Tags,CatId,Views")] News news)
+        public async Task<IActionResult> Create([Bind("PostId,Title,Contents,Thumb,Published,Alias,CreatedDate,Author,AccountId,Tags,CatId,Views")] News news, IFormFile? fThumb)
         {
             if (ModelState.IsValid)
             {
+                news.Title = Utilities.ToTitleCase(news.Title);
+                if (fThumb != null)
+                {
+                    string extension = Path.GetExtension(fThumb.FileName);
+                    string image = Utilities.SEOUrl(news.Title) + extension;
+                    news.Thumb = await Utilities.UploadFile(fThumb, @"news", image.ToLower());
+                }
+                if (string.IsNullOrEmpty(news.Thumb)) news.Thumb = "default.jpg";
+                news.CreatedDate = DateTime.Now;
                 _context.Add(news);
                 await _context.SaveChangesAsync();
+                _notifyService.Success("THÊM MỚI THÀNH CÔNG");
                 return RedirectToAction(nameof(Index));
             }
             return View(news);
@@ -99,7 +106,7 @@ namespace QTComputer.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PostId,Title,Contents,Thumb,Published,Alias,CreatedDate,Author,AccountId,Tags,CatId,Views")] News news)
+        public async Task<IActionResult> Edit(int id, [Bind("PostId,Title,Contents,Thumb,Published,Alias,CreatedDate,Author,AccountId,Tags,CatId,Views")] News news, IFormFile? fThumb)
         {
             if (id != news.PostId)
             {
@@ -110,8 +117,17 @@ namespace QTComputer.Areas.Admin.Controllers
             {
                 try
                 {
+                    news.Title = Utilities.ToTitleCase(news.Title);
+                    if (fThumb != null)
+                    {
+                        string extension = Path.GetExtension(fThumb.FileName);
+                        string image = Utilities.SEOUrl(news.Title) + extension;
+                        news.Thumb = await Utilities.UploadFile(fThumb, @"news", image.ToLower());
+                    }
+
                     _context.Update(news);
                     await _context.SaveChangesAsync();
+                    _notifyService.Success("CẬP NHẬT THÀNH CÔNG");
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -144,7 +160,7 @@ namespace QTComputer.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(news);
+            return PartialView("Delete",news);
         }
 
         // POST: Admin/AdminNews/Delete/5
@@ -163,6 +179,7 @@ namespace QTComputer.Areas.Admin.Controllers
             }
             
             await _context.SaveChangesAsync();
+            _notifyService.Success("XÓA THÀNH CÔNG");
             return RedirectToAction(nameof(Index));
         }
 

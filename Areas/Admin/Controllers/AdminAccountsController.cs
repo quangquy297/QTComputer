@@ -77,7 +77,7 @@ namespace QTComputer.Areas.Admin.Controllers
                 _context.Add(account);
 
                 await _context.SaveChangesAsync();
-                _notifyService.Success("Tạo mới tài khoản thành công");
+                _notifyService.Success("TẠO THÀNH CÔNG");
                 return RedirectToAction(nameof(Index));
             }
             ViewData["QuyenTruyCap"] = new SelectList(_context.Roles, "RoleId", "RoleName", account.RoleId);
@@ -121,6 +121,7 @@ namespace QTComputer.Areas.Admin.Controllers
                 try
                 {
                     _context.Update(account);
+                    _notifyService.Success("CẬP NHẬT THÀNH CÔNG");
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -150,14 +151,14 @@ namespace QTComputer.Areas.Admin.Controllers
             }
 
             var account = await _context.Accounts
-                .Include(a => a.Role)
+                //.Include(a => a.Role)
                 .FirstOrDefaultAsync(m => m.AccountId == id);
             if (account == null)
             {
                 return NotFound();
             }
 
-            return View(account);
+            return PartialView("Delete", account);
         }
 
         // POST: Admin/AdminAccounts/Delete/5
@@ -176,6 +177,7 @@ namespace QTComputer.Areas.Admin.Controllers
             }
 
             await _context.SaveChangesAsync();
+            _notifyService.Success("XÓA THÀNH CÔNG");
             return RedirectToAction(nameof(Index));
         }
 

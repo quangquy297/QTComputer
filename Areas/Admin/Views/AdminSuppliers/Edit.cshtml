@@ -1,0 +1,57 @@
+﻿@model QTComputer.Models.Supplier
+
+@{
+    ViewData["Title"] = "CẬP NHẬT THÔNG TIN NHÀ CUNG CẤP";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a asp-area="Admin" asp-controller="AdminSuppliers" asp-action="Index" class="breadcrumb-item">Danh sách nhà cung cấp</a>
+            <span class="breadcrumb-item active">Cập nhật thông tin nhà cung cấp</span>
+        </nav>
+    </div>
+</div>
+
+<form asp-controller="AdminSuppliers" asp-action="Edit" asp-route-id="@Model.SupplierId" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="SupplierId" />
+    <div class="page-header no-gutters has-tab">
+        <div class="d-md-flex m-b-15 align-items-center justify-content-between">
+            <div class="col-md-8"></div>
+            <div class="m-b-15">
+                <button class="btn btn-primary">
+                    <i class="anticon anticon-save"></i>
+                    <span>LƯU</span>
+                </button>
+            </div>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#product-edit-basic">THÔNG TIN</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content m-t-15">
+        <div class="tab-pane fade show active" id="product-edit-basic">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productName">Tên nhà cung cấp</label>
+                        <input type="text" class="form-control" asp-for="CompanyName">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productSize">Địa chỉ</label>
+                        <input type="text" class="form-control" asp-for="Address">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productSize">Điện thoại</label>
+                        <input type="text" class="form-control" asp-for="Phone">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

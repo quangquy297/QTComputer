@@ -1,7 +1,7 @@
 ﻿@model QTComputer.Models.Category
 
 @{
-    ViewData["Title"] = "Tạo mới danh mục sản phẩm";
+    ViewData["Title"] = "CẬP NHẬT THÔNG TIN DANH MỤC";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 @section Styles{
@@ -13,7 +13,8 @@
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
             <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
-            <span class="breadcrumb-item active">@Model.CatName</span>
+            <a asp-area="Admin" asp-controller="AdminCategories" asp-action="Index" class="breadcrumb-item">Danh mục sản phẩm</a>
+            <span class="breadcrumb-item active">Sửa thông tin danh mục</span>
         </nav>
     </div>
 </div>
@@ -24,6 +25,7 @@
     <input type="hidden" asp-for="Thumb" />
     <div class="page-header no-gutters has-tab">
         <div class="d-md-flex m-b-15 align-items-center justify-content-between">
+            <div class="col-md-8"></div>
             <div class="m-b-15">
                 <button class="btn btn-primary">
                     <i class="anticon anticon-save"></i>
@@ -34,9 +36,6 @@
         <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#product-edit-basic">THÔNG TIN DANH MỤC</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#product-edit-description">MÔ TẢ</a>
             </li>
         </ul>
     </div>
@@ -66,20 +65,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="product-edit-option">
-            <div class="card">
-                <div class="card-body">
-
-                </div>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="product-edit-description">
-            <div class="card">
-                <div class="card-body">
-                    <textarea class="summernote" asp-for="Description"></textarea>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productBrand">Mô tả</label>
+                        <textarea class="summernote" asp-for="Description"></textarea>
+                    </div>
                 </div>
             </div>
         </div>

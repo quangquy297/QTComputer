@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace QTComputer.Models;
@@ -33,6 +32,8 @@ public partial class DbComputerContext : DbContext
     public virtual DbSet<Product> Products { get; set; }
 
     public virtual DbSet<Role> Roles { get; set; }
+
+    public virtual DbSet<Supplier> Suppliers { get; set; }
 
     public virtual DbSet<TransactStatus> TransactStatuses { get; set; }
 
@@ -103,6 +104,10 @@ public partial class DbComputerContext : DbContext
 
         modelBuilder.Entity<Order>(entity =>
         {
+            entity.HasIndex(e => e.CustomerId, "IX_Orders_CustomerID");
+
+            entity.HasIndex(e => e.TransactStatusId, "IX_Orders_TransactStatusID");
+
             entity.Property(e => e.OrderId).HasColumnName("OrderID");
             entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
             entity.Property(e => e.OrderDate).HasColumnType("datetime");
@@ -123,6 +128,10 @@ public partial class DbComputerContext : DbContext
 
         modelBuilder.Entity<OrderDetail>(entity =>
         {
+            entity.HasIndex(e => e.OrderId, "IX_OrderDetails_OrderID");
+
+            entity.HasIndex(e => e.ProductId, "IX_OrderDetails_ProductID");
+
             entity.Property(e => e.OrderDetailId).HasColumnName("OrderDetailID");
             entity.Property(e => e.CreateDate).HasColumnType("datetime");
             entity.Property(e => e.OrderId).HasColumnName("OrderID");
@@ -140,10 +149,7 @@ public partial class DbComputerContext : DbContext
         modelBuilder.Entity<Page>(entity =>
         {
             entity.Property(e => e.PageId).HasColumnName("PageID");
-            entity.Property(e => e.Alias).HasMaxLength(250);
             entity.Property(e => e.CreatedDate).HasColumnType("datetime");
-            entity.Property(e => e.MetaDesc).HasMaxLength(250);
-            entity.Property(e => e.MetaKey).HasMaxLength(250);
             entity.Property(e => e.PageName).HasMaxLength(250);
             entity.Property(e => e.Thumb).HasMaxLength(250);
             entity.Property(e => e.Title).HasMaxLength(250);
@@ -151,18 +157,25 @@ public partial class DbComputerContext : DbContext
 
         modelBuilder.Entity<Product>(entity =>
         {
+            entity.HasIndex(e => e.CatId, "IX_Products_CatID");
+
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
             entity.Property(e => e.CatId).HasColumnName("CatID");
             entity.Property(e => e.DateCreated).HasColumnType("datetime");
             entity.Property(e => e.DateModified).HasColumnType("datetime");
             entity.Property(e => e.ProductName).HasMaxLength(255);
             entity.Property(e => e.ShortDesc).HasMaxLength(255);
+            entity.Property(e => e.SupplierId).HasColumnName("SupplierID");
             entity.Property(e => e.Thumb).HasMaxLength(255);
             entity.Property(e => e.Title).HasMaxLength(255);
 
             entity.HasOne(d => d.Cat).WithMany(p => p.Products)
                 .HasForeignKey(d => d.CatId)
                 .HasConstraintName("FK_Products_Categories");
+
+            entity.HasOne(d => d.Supplier).WithMany(p => p.Products)
+                .HasForeignKey(d => d.SupplierId)
+                .HasConstraintName("FK__Products__Suppli__531856C7");
         });
 
         modelBuilder.Entity<Role>(entity =>
@@ -170,6 +183,21 @@ public partial class DbComputerContext : DbContext
             entity.Property(e => e.RoleId).HasColumnName("RoleID");
             entity.Property(e => e.Description).HasMaxLength(50);
             entity.Property(e => e.RoleName).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<Supplier>(entity =>
+        {
+            entity.HasKey(e => e.SupplierId).HasName("PK__Supplier__4BE666B42791D162");
+
+            entity.Property(e => e.Address)
+                .HasMaxLength(255)
+                .IsUnicode(false);
+            entity.Property(e => e.CompanyName)
+                .HasMaxLength(255)
+                .IsUnicode(false);
+            entity.Property(e => e.Phone)
+                .HasMaxLength(20)
+                .IsUnicode(false);
         });
 
         modelBuilder.Entity<TransactStatus>(entity =>

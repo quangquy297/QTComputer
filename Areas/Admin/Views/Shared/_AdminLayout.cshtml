@@ -2,6 +2,7 @@
 @{
     var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
     var roleOfUser = claimsIdentity != null ? string.Join(", ", claimsIdentity.Claims.Where(x => x.Type == ClaimTypes.Role).Select(x => x.Value).ToList()) : "User";
+    var nameOfUser = claimsIdentity != null ? string.Join(", ", claimsIdentity.Claims.Where(x => x.Type == ClaimTypes.Name).Select(x => x.Value).ToList()) : "User";
 }
 <head>
     <meta charset="utf-8">
@@ -50,6 +51,7 @@
                         
                         @if (User.Identity.IsAuthenticated)
                         {
+                            <li class="navbar-brand">@Html.DisplayName(nameOfUser) | </li>
                             <li class="navbar-brand">@Html.DisplayName(roleOfUser) | </li>
                             <li>
                                 <a asp-area="Admin" asp-controller="AdminLogin" asp-action="AdminLogout" type="button" class="btn btn-danger btn-tone m-r-5">

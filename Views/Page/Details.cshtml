@@ -1,9 +1,8 @@
 ﻿@model QTComputer.Models.Page
-
 @{
     ViewData["Title"] = Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
-    string url = $"/page/{Model.Alias}";
+    string url = $"/page/{Model.PageId}";
 }
 <main class="main-content">
     <div class="breadcrumb-area breadcrumb-height" data-bg-image="/assets/images/slider/bg/bg1.jpg">
@@ -29,8 +28,6 @@
                         <div class="blog-meta text-dim-gray pb-3">
                         </div>
                         @Html.Raw(Model.Contents)
-
-
                     </div>
                 </div>
             </div>

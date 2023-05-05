@@ -2,10 +2,8 @@
 
 @{
     Category category = ViewBag.CurrentCat;
-    ViewData["TiTle"] = category.Title + " " + ViewBag.CurrentPage;
     Layout = "~/Views/Shared/_Layout.cshtml";
-    int PageCurrent = ViewBag.CurrentPage;
-    int PageNext = PageCurrent + 1;
+
 }
 
 <main class="main-content">
@@ -14,7 +12,7 @@
             <div class="row h-100">
                 <div class="col-lg-12">
                     <div class="breadcrumb-item">
-                        <h1 class="breadcrumb-heading">@category.CatName</h1>
+                        <h1 class="breadcrumb-heading">Các sản phẩm về @category.CatName</h1>
                         <ul>
                             <li>
                                 <a href="/">Trang chủ <i class="pe-7s-angle-right"></i></a>
@@ -275,7 +273,7 @@
                                 {
                                     foreach (var item in Model)
                                     {
-                                        string url = $"/{item.Title}-{item.ProductId}";
+                                        string url = $"/{item.CatId}-{item.ProductId}";
                                         <div class="col-lg-4 col-sm-6">
                                             <div class="product-item">
                                                 <div class="product-img img-zoom-effect">
@@ -330,7 +328,7 @@
                                 {
                                     foreach (var item in Model)
                                     {
-                                        string url = $"/{item.Title}-{item.ProductId}";
+                                        string url = $"/san-pham{item.ProductId}";
                                         <div class="col-12 pt-6">
                                             <div class="product-item">
                                                 <div class="product-img img-zoom-effect">

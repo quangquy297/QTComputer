@@ -13,12 +13,12 @@ namespace QTComputer.Controllers
             _context = context;
         }
 
-        [Route("/page/{Alias}", Name = "PageDetails")]
-        public IActionResult Details(string Alias)
+        [Route("/page/{id}", Name = "PageDetails")]
+        public IActionResult Details(int? id)
         {
-            if (string.IsNullOrEmpty(Alias)) return RedirectToAction("Index", "Home");
+            if (id==null) return RedirectToAction("Index", "Home");
 
-            var page = _context.Pages.AsNoTracking().SingleOrDefault(x => x.Alias == Alias);
+            var page = _context.Pages.AsNoTracking().SingleOrDefault(x => x.PageId == id);
             if (page == null)
             {
                 return RedirectToAction("Index", "Home");

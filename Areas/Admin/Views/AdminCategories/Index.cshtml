@@ -1,16 +1,13 @@
-﻿@using PagedList.Core.Mvc
-@model PagedList.Core.IPagedList<QTComputer.Models.Category>
-
+﻿@model List<QTComputer.Models.Category>
 @{
-    int CurrentPage = ViewBag.CurrentPage;
-    ViewData["Title"] = "Danh sách danh mục sản phẩm" + CurrentPage;
+    ViewData["Title"] = "DANH MỤC SẢN PHẨM";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="page-header">
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
             <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
-            <span class="breadcrumb-item active">Danh mục : Trang @CurrentPage</span>
+            <span class="breadcrumb-item active">Danh mục sản phẩm</span>
         </nav>
     </div>
 </div>
@@ -18,7 +15,7 @@
     <div class="card-body">
         <div class="row m-b-30">
             <div class="col-lg-8">
-                <a class="btn btn-primary" asp-area="Admin" asp-controller="AdminCategories" asp-action="Create"><i class="anticon anticon-plus-circle m-r-5"></i><span>Thêm danh mục</span></a>
+                <a class="btn btn-primary" asp-controller="AdminCategories" asp-action="Create"><i class="anticon anticon-plus-circle m-r-5"></i><span>Thêm danh mục</span></a>
             </div>
             <div class="col-lg-4 text-right">
             </div>
@@ -29,7 +26,6 @@
                     <tr>
                         <th>ID</th>
                         <th>Tên danh mục</th>
-                        <th>Ordering</th>
                         <th>Trạng thái</th>
                         <th>#</th>
                     </tr>
@@ -39,7 +35,7 @@
                     {
                         foreach (var item in Model)
                         {
-                            string url = $"/{item.Title}";
+                            string url = $"/danhmuc/{item.CatId}";
                             <tr>
                                 <td>@item.CatId</td>
                                 <td>
@@ -69,7 +65,7 @@
                                 <td>
                                     <a class="btn btn-primary btn-tone m-r-5" asp-area="Admin" asp-controller="AdminCategories" asp-action="Details" asp-route-id="@item.CatId">Chi tiết</a>
                                     <a class="btn btn-secondary btn-tone m-r-5" asp-area="Admin" asp-controller="AdminCategories" asp-action="Edit" asp-route-id="@item.CatId">Sửa</a>
-                                    <a class="btn btn-success btn-tone m-r-5" asp-area="Admin" asp-controller="AdminCategories" asp-action="Delete" asp-route-id="@item.CatId">Xóa</a>
+                                    <a data-target="#modal-delete" data-toggle="modal" class="btn btn-success btn-tone m-r-5" asp-area="Admin" asp-controller="AdminCategories" asp-action="Delete" asp-route-id="@item.CatId">Xoá</a>
                                 </td>
                             </tr>
                         }
@@ -80,14 +76,25 @@
         </div>
     </div>
 </div>
+<div id="modal-delete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
 @section Scripts{
-
     <script>
-
         var js = jQuery.noConflict(true);
-        $(document).ready(function () {
-            $('#data-table').DataTable();
+        js(document).ready(function () {
+            js('#data-table').DataTable();
         });
     </script>
-
+    <script>
+        $('#modal-delete').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var url = button.attr("href");
+            var modal = $(this);
+            modal.find('.modal-content').load(url);
+        });
+    </script>
 }

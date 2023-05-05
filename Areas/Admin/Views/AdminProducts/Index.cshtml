@@ -1,7 +1,6 @@
-﻿@model IEnumerable<QTComputer.Models.Product>
+﻿@model List<QTComputer.Models.Product>
 
 @{
-    int CurrentPage = ViewBag.CurrentPage;
     ViewData["Title"] = "Danh sách sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
@@ -9,7 +8,7 @@
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
             <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
-            <span class="breadcrumb-item active">Danh sách sản phẩm : Trang @CurrentPage</span>
+            <span class="breadcrumb-item active">Danh sách sản phẩm</span>
         </nav>
     </div>
 </div>
@@ -20,12 +19,13 @@
         </div>
         <div class="card-body">
         </div>
-        <table id="data-table" class="display" style="width:100%">
+        <table id="data-table" class="table table-hover e-commerce-table">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Tên sản phẩm</th>
                     <th>Danh mục</th>
+                    <th>Nhà cung cấp</th>
                     <th>Giá</th>
                     <th>Tồn kho</th>
                     <th>Trạng thái</th>
@@ -46,6 +46,7 @@
                                 @item.ProductName
                             </td>
                             <td>@item.Cat.CatName</td>
+                            <td>@item.Supplier.CompanyName</td>
                             <td>@item.Price.Value.ToString("#,##0") VNĐ</td>
                             <td>@item.UnitsInStock</td>
                             <td>
@@ -72,8 +73,6 @@
                         </tr>
                     }
                 }
-                @await Html.PartialAsync("_CreateProduct")
-
             </tbody>
         </table>
     </div>
@@ -84,7 +83,6 @@
         var js =jQuery.noConflict(true);
         js(document).ready(function () {
             js('#data-table').DataTable();
-
         });
     </script>
 }

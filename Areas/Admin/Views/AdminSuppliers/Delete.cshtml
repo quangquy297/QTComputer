@@ -1,0 +1,33 @@
+﻿@model QTComputer.Models.Supplier
+
+<div class="modal-body">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">XÁC NHẬN XÓA NHÀ CUNG CẤP #@Model.SupplierId</h4>
+            <div class="table-responsive">
+                <table class="product-info-table m-t-20">
+                    <tbody>
+                        <tr>
+                            <td>ID:</td>
+                            <td class="text-dark font-weight-semibold">#@Model.SupplierId</td>
+                        </tr>
+                        <tr>
+                            <td>Tên nhà cung cấp:</td>
+                            <td>@Model.CompanyName</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <form asp-area="Admin" asp-controller="AdminSuppliers" asp-action="Delete" asp-route-id="@Model.SupplierId" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SupplierId" />
+            <button type="submit" class="btn btn-danger">Xác nhận xóa</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        </form>
+    </div>
+
+</div>

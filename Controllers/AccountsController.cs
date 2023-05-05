@@ -96,13 +96,13 @@ namespace QTComputer.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    string salt = Utilities.GetRandomKey();
                     Customer khachhang = new Customer
                     {
                         FullName = taikhoan.FullName,
+                        Avatar = "defaut.png",
                         Phone = taikhoan.Phone.Trim().ToLower(),
                         Email = taikhoan.Email.Trim().ToLower(),
-                        Password = (taikhoan.Password + salt.Trim()).ToMD5(),
+                        Password = taikhoan.Password.ToMD5(),
                         Active = true,
                         CreateDate = DateTime.Now
                     };
@@ -176,7 +176,7 @@ namespace QTComputer.Controllers
                         return View(customer);
                     }
                     //kiem tra xem account co bi disable hay khong
-
+                    khachhang.LastLogin = DateTime.Now;
                     if (khachhang.Active == false)
                     {
                         return RedirectToAction("ThongBao", "Accounts");
@@ -248,10 +248,10 @@ namespace QTComputer.Controllers
             }
             catch
             {
-                _notyfService.Success("Thay đổi mật khẩu không thành công");
+                _notyfService.Success("Thay đổi mật khẩu không thành công 1");
                 return RedirectToAction("Dashboard", "Accounts");
             }
-            _notyfService.Success("Thay đổi mật khẩu không thành công");
+            _notyfService.Success("Thay đổi mật khẩu không thành công 2");
             return RedirectToAction("Dashboard", "Accounts");
         }
         [HttpGet]

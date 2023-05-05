@@ -26,31 +26,29 @@ namespace QTComputer.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminProducts
-        public IActionResult Index(int page =1, int CatID = 0)
+        public IActionResult Index(/*int CatID = 0*/)
         {
-            var pageNumber = page;
-
             List<Product> lsProducts = new List<Product>();
 
-            if(CatID != 0)
-            {
+            //if(CatID != 0)
+            //{
+            //    lsProducts = _context.Products
+            //    .AsNoTracking()
+            //    .Where(x=>x.CatId==CatID)
+            //    .Include(x => x.Cat)
+            //    .OrderByDescending(x => x.ProductId).ToList();
+            //}
+            //else
+            //{
                 lsProducts = _context.Products
                 .AsNoTracking()
-                .Where(x=>x.CatId==CatID)
                 .Include(x => x.Cat)
+                .Include(x => x.Supplier)
                 .OrderByDescending(x => x.ProductId).ToList();
-            }
-            else
-            {
-                lsProducts = _context.Products
-                .AsNoTracking()
-                .Include(x => x.Cat)
-                .OrderByDescending(x => x.ProductId).ToList();
-            }
+            //}
             List<Product> models = new List<Product>(lsProducts.AsQueryable());
-            ViewBag.CurrentCateID = CatID;
-            ViewBag.CurrentPage = pageNumber;
-            ViewData["DanhMuc"] = new SelectList(_context.Categories, "CatId", "CatName", CatID);
+            //ViewBag.CurrentCateID = CatID;
+            //ViewData["DanhMuc"] = new SelectList(_context.Categories, "CatId", "CatName", CatID);
 
             return View(models);
         }
@@ -64,6 +62,7 @@ namespace QTComputer.Areas.Admin.Controllers
 
             var product = await _context.Products
                 .Include(p => p.Cat)
+                .Include(x => x.Supplier)
                 .FirstOrDefaultAsync(m => m.ProductId == id);
             if (product == null)
             {
@@ -77,6 +76,7 @@ namespace QTComputer.Areas.Admin.Controllers
         public IActionResult Create()
         {
             ViewData["DanhMuc"] = new SelectList(_context.Categories, "CatId", "CatName");
+            ViewData["NhaCungCap"] = new SelectList(_context.Suppliers, "SupplierId", "CompanyName");
             return View();
         }
 
@@ -85,7 +85,7 @@ namespace QTComputer.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,ProductName,ShortDesc,Description,CatId,Price,Thumb,DateCreated,DateModified,Title,UnitsInStock")] Product product, Microsoft.AspNetCore.Http.IFormFile? fThumb)
+        public async Task<IActionResult> Create([Bind("ProductId,ProductName,ShortDesc,Description,CatId,Price,Thumb,DateCreated,DateModified,Title,UnitsInStock,SupplierId")] Product product, Microsoft.AspNetCore.Http.IFormFile? fThumb)
         {
             if (ModelState.IsValid)
             {
@@ -123,6 +123,8 @@ namespace QTComputer.Areas.Admin.Controllers
                 return NotFound();
             }
             ViewData["DanhMuc"] = new SelectList(_context.Categories, "CatId", "CatName", product.CatId);
+            ViewData["NhaCungCap"] = new SelectList(_context.Suppliers, "SupplierId", "CompanyName");
+
             return View(product);
         }
 
@@ -131,7 +133,7 @@ namespace QTComputer.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductName,ShortDesc,Description,CatId,Price,Thumb,DateCreated,DateModified,Title,UnitsInStock")] Product product, Microsoft.AspNetCore.Http.IFormFile? fThumb)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductName,ShortDesc,Description,CatId,Price,Thumb,DateCreated,DateModified,Title,UnitsInStock,SupplierId")] Product product, Microsoft.AspNetCore.Http.IFormFile? fThumb)
         {
             if (id != product.ProductId)
             {
@@ -189,7 +191,7 @@ namespace QTComputer.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(product);
+            return PartialView("Delete", product);
         }
 
         // POST: Admin/AdminProducts/Delete/5

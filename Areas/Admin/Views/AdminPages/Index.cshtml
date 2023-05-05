@@ -1,15 +1,13 @@
-﻿@using PagedList.Core.Mvc
-@model PagedList.Core.IPagedList<QTComputer.Models.Page>
+﻿@model List<QTComputer.Models.Page>
 @{
-    int CurrentPage = ViewBag.CurrentPage;
-    ViewData["Title"] = "Danh sách Pages" + CurrentPage;
+    ViewData["Title"] = "DANH SÁCH PAGES";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="page-header">
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
-            <a asp-area="Admin" asp-controller="AdminPages" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
-            <span class="breadcrumb-item active">Danh sách Page</span>
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <span class="breadcrumb-item active">Danh sách Pages</span>
         </nav>
     </div>
 </div>
@@ -39,7 +37,7 @@
                     {
                         foreach (var item in Model)
                         {
-                            string url = $"/page/{item.Alias}";
+                            string url = $"/page/{item.PageId}";
                             <tr>
                                 <td>@item.PageId</td>
                                 <td><a href="@url">@item.PageName</a></td>
@@ -60,45 +58,37 @@
                                     }
                                 </td>
                                 <td>
-                                    <a class="btn btn-success m-r-5" asp-area="Admin" asp-controller="AdminPages" asp-action="Details" asp-route-id="@item.PageId">View</a>
-                                    <a class="btn btn-primary m-r-5" asp-area="Admin" asp-controller="AdminPages" asp-action="Edit" asp-route-id="@item.PageId">Edit</a>
-                                    <a class="btn btn-secondary m-r-5" data-toggle="modal" data-target="#exampleModal">Delete</a>
+                                    <a class="btn btn-success m-r-5" asp-area="Admin" asp-controller="AdminPages" asp-action="Details" asp-route-id="@item.PageId">Chi tiết</a>
+                                    <a class="btn btn-primary m-r-5" asp-area="Admin" asp-controller="AdminPages" asp-action="Edit" asp-route-id="@item.PageId">Sửa</a>
+                                    <a data-target="#modal-delete" data-toggle="modal" class="btn btn-success btn-tone m-r-5" asp-area="Admin" asp-controller="AdminPages" asp-action="Delete" asp-route-id="@item.PageId">Xoá</a>
                                 </td>
                             </tr>
                         }
                     }
                 </tbody>
             </table>
-            <div class="modal fade" id="exampleModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">XÁC NHẬN XÓA?</h5>
-                            <button type="button" class="close" data-dismiss="modal">
-                                <i class="anticon anticon-close"></i>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            ...
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" value="delete">Delete</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </div>
+    </div>
+</div>
+<div id="modal-delete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
         </div>
     </div>
 </div>
 @section Scripts{
-
     <script>
-
         var js = jQuery.noConflict(true);
-        $(document).ready(function () {
-            $('#data-table').DataTable();
+        js(document).ready(function () {
+            js('#data-table').DataTable();
         });
     </script>
-
+    <script>
+        $('#modal-delete').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var url = button.attr("href");
+            var modal = $(this);
+            modal.find('.modal-content').load(url);
+        });
+    </script>
 }

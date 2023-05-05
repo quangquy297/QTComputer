@@ -21,20 +21,16 @@ namespace QTComputer.Controllers
         }
         // GET: /<controller>/
         [Route("tin-tuc", Name = ("Blog"))]
-        public IActionResult Index(int? page)
+        public IActionResult Index()
         {
-            var pageNumber = page == null || page <= 0 ? 1 : page.Value;
-            var pageSize = Utilities.PAGE_SIZE;
             var lsNews = _context.News
                 .AsNoTracking()
                 .OrderBy(x => x.PostId);
-            PagedList<News> models = new PagedList<News>(lsNews, pageNumber, pageSize);
-
-            ViewBag.CurrentPage = pageNumber;
+            List<News> models = new List<News>(lsNews);
             return View(models);
 
         }
-        [Route("/tin-tuc/{Title}-{id}.html", Name = "TinChiTiet")]
+        [Route("/tin-tuc/{id}", Name = "TinChiTiet")]
         public IActionResult Details(int id)
         {
             var news = _context.News.AsNoTracking().SingleOrDefault(x => x.PostId == id);

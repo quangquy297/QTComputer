@@ -38,12 +38,12 @@ namespace QTComputer.Controllers
             }
 
         }
-        [Route("danhmuc/{Alias}", Name = ("ListProduct"))]
-        public IActionResult List(string title)
+        [Route("danhmuc/{id}", Name = ("ListProduct"))]
+        public IActionResult List(int id)
         {
             try
             {
-                var danhMuc = _context.Categories.AsNoTracking().SingleOrDefault(x => x.Title == title);
+                var danhMuc = _context.Categories.AsNoTracking().SingleOrDefault(x => x.CatId == id);
 
                 var lsProducts = _context.Products
                     .AsNoTracking()
@@ -61,7 +61,7 @@ namespace QTComputer.Controllers
 
 
         }
-        [Route("/{Alias}-{id}", Name = "ProductDetails")]
+        [Route("/san-pham/{id}", Name = "ProductDetails")]
         public IActionResult Details(int id)
         {
             try

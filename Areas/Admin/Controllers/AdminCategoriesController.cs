@@ -27,14 +27,10 @@ namespace QTComputer.Areas.Admin.Controllers
         // GET: Admin/AdminCategories
         public IActionResult Index(int? page)
         {
-            var pageNumber = page == null || page <= 0 ? 1 : page.Value;
-            var pageSize = Utilities.PAGE_SIZE;
             var lsCats = _context.Categories
                 .AsNoTracking()
                 .OrderBy(x => x.CatId);
-            PagedList<Category> models = new PagedList<Category>(lsCats, pageNumber, pageSize);
-
-            ViewBag.CurrentPage = pageNumber;
+            List<Category> models = new List<Category>(lsCats);
             return View(models);
         }
 
@@ -107,7 +103,7 @@ namespace QTComputer.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CatId,CatName,Description,Published,Thumb,Title")] Category category, Microsoft.AspNetCore.Http.IFormFile? fThumb)
+        public async Task<IActionResult> Edit(int id, [Bind("CatId,CatName,Description,Published,Thumb,Title")] Category category, IFormFile? fThumb)
         {
             if (id != category.CatId)
             {
@@ -160,7 +156,7 @@ namespace QTComputer.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(category);
+            return PartialView("Delete",category);
         }
 
         // POST: Admin/AdminCategories/Delete/5

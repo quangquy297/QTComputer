@@ -26,16 +26,13 @@ namespace QTComputer.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminPages
-        public IActionResult Index(int? page)
+        public IActionResult Index()
         {
-            var pageNumber = page == null || page <= 0 ? 1 : page.Value;
-            var pageSize = 10;
             var lsPages = _context.Pages
                 .AsNoTracking()
                 .OrderBy(x => x.PageId);
-            PagedList<Page> models = new PagedList<Page>(lsPages, pageNumber, pageSize);
+            List<Page> models = new List<Page>(lsPages);
 
-            ViewBag.CurrentPage = pageNumber;
             return View(models);
         }
 
@@ -68,7 +65,7 @@ namespace QTComputer.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PageId,PageName,Contents,Thumb,Published,Title,MetaDesc,MetaKey,Alias,CreatedDate,Ordering")] Page page, Microsoft.AspNetCore.Http.IFormFile fThumb)
+        public async Task<IActionResult> Create([Bind("PageId,PageName,Contents,Thumb,Published,Title,CreatedDate")] Page page, IFormFile? fThumb)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +76,7 @@ namespace QTComputer.Areas.Admin.Controllers
                     page.Thumb = await Utilities.UploadFile(fThumb, @"pages", imageName.ToLower());
                 }
                 if (string.IsNullOrEmpty(page.Thumb)) page.Thumb = "default.jpg";
-                page.Alias = Utilities.SEOUrl(page.PageName);
+                page.CreatedDate= DateTime.Now;
                 _context.Add(page);
                 await _context.SaveChangesAsync();
                 _notifyService.Success("THÊM MỚI THÀNH CÔNG");
@@ -109,7 +106,7 @@ namespace QTComputer.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PageId,PageName,Contents,Thumb,Published,Title,MetaDesc,MetaKey,Alias,CreatedDate,Ordering")] Page page, Microsoft.AspNetCore.Http.IFormFile fThumb)
+        public async Task<IActionResult> Edit(int id, [Bind("PageId,PageName,Contents,Thumb,Published,CreatedDate,Title")] Page page, IFormFile? fThumb)
         {
             if (id != page.PageId)
             {
@@ -127,7 +124,7 @@ namespace QTComputer.Areas.Admin.Controllers
                         page.Thumb = await Utilities.UploadFile(fThumb, @"pages", imageName.ToLower());
                     }
                     if (string.IsNullOrEmpty(page.Thumb)) page.Thumb = "default.jpg";
-                    page.Alias = Utilities.SEOUrl(page.PageName);
+                    
                     _context.Update(page);
                     await _context.SaveChangesAsync();
                     _notifyService.Success("CẬP NHẬT THÀNH CÔNG");
@@ -163,7 +160,7 @@ namespace QTComputer.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(page);
+            return PartialView("Delete", page);
         }
 
         // POST: Admin/AdminPages/Delete/5

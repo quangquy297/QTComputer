@@ -1,5 +1,4 @@
-﻿@model List<Product>
-
+﻿
 <header class="main-header_area position-relative">
     <div class="header-top border-bottom d-none d-md-block">
         <div class="container">
@@ -36,18 +35,18 @@
                         </a>
                         <div class="header-search-area d-none d-lg-block">
                             <form class="header-searchbox" asp-controller="Product" asp-action="Index">
-                                <select class="nice-select select-search-category wide" style="display: none;" onchange="location = this.value;">
+                                @*<select class="nice-select select-search-category wide" style="display: none;" onchange="location = this.value;">
                                     <option selected>Danh mục</option>
                                     
                                     @if (Model != null)
                                     {
-                                        @foreach (var item in Model)
+                                        @foreach (var item in Model.Products)
                                         {
-                                            <option value="@Url.Action("Index", "Product", new { id = item.CatId })">@item.Cat.CatName</option>
+                                            <option value="@Url.Action("List", "Product", new { id = item.category.Title })">@item.category.CatName</option>
 
                                         }
                                     }
-                                </select>
+                                </select>*@
 @*                                <div class="nice-select select-search-category wide" tabindex="0">
                                     <span class="current">All Category</span>
                                     <ul class="list">
@@ -63,7 +62,7 @@
                                 <button class="btn btn-outline-whisper btn-primary-hover" type="submit"><i class="pe-7s-search"></i></button>
                             </form>
                         </div>
-                        <div class="header-right">
+                        <div class="header-right" style="margin-left:30px">
                             <ul style="text-align:center">
                                 <li class="dropdown d-none d-md-block">
                                     <button class="btn btn-link dropdown-toggle ht-btn p-0" type="button" id="settingButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -121,7 +120,7 @@
                                         <a asp-controller="Product" asp-action="Index">Sản phẩm</a>
                                     </li>
                                     <li>
-                                        <a href="/page/huong-dan-mua-hang">Hướng dẫn mua hàng</a>
+                                        <a href="/page/1">Hướng dẫn mua hàng</a>
                                     </li>
                                     <li>
                                         <a href="/tin-tuc">Tin tức</a>

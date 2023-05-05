@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
-    string url = $"/tin-tuc/{Model.Title}-{Model.PostId}.html";
+    string url = $"/tin-tuc/{Model.Title}-{Model.PostId}";
 }
 <main class="main-content">
     <div class="breadcrumb-area breadcrumb-height" data-bg-image="assets/images/breadcrumb/bg/1-1-1920x373.jpg">
@@ -43,42 +43,6 @@
                                 <a href="@url">@Model.Title</a>
                             </h5>
                             @Html.Raw(Model.Contents)
-                            <div class="tag-wtih-social">
-                                <div class="tag">
-                                    <span class="title text-primary">Tags:</span>
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:void(0)">Furniture,</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)">Electronic,</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)">Fashion</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="social-link">
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:void(0)">
-                                                <i class="fa fa-facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)">
-                                                <i class="fa fa-pinterest-p"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)">
-                                                <i class="fa fa-dribbble"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>

@@ -1,14 +1,22 @@
 ﻿@model QTComputer.Models.Product
 
 @{
-    ViewData["Title"] = "CHỈNH SỬA SẢN PHẨM";
+    ViewData["Title"] = "SỬA THÔNG TIN SẢN PHẨM";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 @section Styles{
     <link href="~/Adminassets/summernote/summernote-bs4.css" rel="stylesheet" />
     <link href="~/Adminassets/summernote/summernote.css" rel="stylesheet" />
 }
-
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a asp-area="Admin" asp-controller="AdminProducts" asp-action="Index" class="breadcrumb-item">Danh sách sản phẩm</a>
+            <span class="breadcrumb-item active">Sửa thông tin sản phẩm</span>
+        </nav>
+    </div>
+</div>
 <form asp-controller="AdminProducts" asp-action="Edit" asp-route-id="@Model.ProductId" method="post" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input type="hidden" asp-for="ProductId" />
@@ -39,9 +47,6 @@
             <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#product-edit-basic">Basic Info</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#product-edit-description">Description</a>
-            </li>
         </ul>
     </div>
     <div class="tab-content m-t-15">
@@ -64,18 +69,25 @@
                     </div>
 
                     <div class="row">
-                        <div class="form-group col-6">
+                        <div class="form-group col-4">
                             <label class="font-weight-semibold" for="productCategory">Danh mục sản phẩm</label>
                             <select class="custom-select" asp-for="CatId" style="min-width: 200px;" asp-items="ViewBag.DanhMuc">
                                 <option value="" disabled selected>Chọn danh mục</option>
                             </select>
                         </div>
-                        <div class="form-group col-6">
+                        <div class="form-group col-4">
+                            <label class="font-weight-semibold" for="productCategory">Nhà cung cấp</label>
+                            <select class="custom-select" asp-for="SupplierId" style="min-width: 200px;" asp-items="ViewBag.NhaCungCap">
+                                <option value="" disabled selected>Chọn nhà cung cấp</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-4">
                             <label class="font-weight-semibold" for="productName">Hàng tồn kho</label>
                             <input type="text" class="form-control" asp-for="UnitsInStock">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="row">
+                        <div class="form-group col-6">
                         <label class="font-weight-semibold">Thumbnail</label>
                         <input type="text" class="form-control" asp-for="Thumb" disabled>
                         <input name="fThumb" type="file" class="form-control-file" asp-for="Thumb" />
@@ -84,14 +96,10 @@
                         <div class="avatar avatar-image rounded" style="height:100px; width:100px">
                             <img src="~/images/products/@Model.Thumb" alt="@Model.Title" />
                         </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="product-edit-description">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productBrand">Mô tả</label>
                         <textarea class="summernote" asp-for="Description"></textarea>
                     </div>
                 </div>

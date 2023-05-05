@@ -1,0 +1,51 @@
+﻿@model QTComputer.Models.Supplier
+
+@{
+    ViewData["Title"] = "CHI TIẾT NHÀ CUNG CẤP";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a asp-area="Admin" asp-controller="AdminSuppliers" asp-action="Index" class="breadcrumb-item">Danh sách nhà cung cấp</a>
+            <span class="breadcrumb-item active">Chi tiết nhà cung cấp</span>
+        </nav>
+    </div>
+</div>
+<div class="page-header no-gutters has-tab">
+    <div class="d-md-flex m-b-15 align-items-center justify-content-between">
+        <div class="media align-items-center m-b-15">
+            
+        </div>
+        <div class="m-b-15">
+            <a class="btn btn-primary" asp-area="Admin" asp-controller="AdminSuppliers" asp-action="Edit" asp-route-id="@Model.SupplierId">Edit</a>
+        </div>
+    </div>
+</div>
+<div class="card-body">
+    <h4 class="card-title">Thông tin danh mục</h4>
+    <div class="table table-hover">
+        <table class="product-info-table m-t-20">
+            <tbody>
+                <tr>
+                    <td>ID:</td>
+                    <td class="text-dark font-weight-semibold">@Model.SupplierId</td>
+                </tr>
+                <tr>
+                    <td>Tên nhà cung cấp:</td>
+                    <td>@Model.CompanyName</td>
+                </tr>
+                <tr>
+                    <td>Địa chỉ:</td>
+                    <td>@Model.Address</td>
+                </tr>
+                <tr>
+                    <td>Điện thoại:</td>
+                    <td>@Model.Phone</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

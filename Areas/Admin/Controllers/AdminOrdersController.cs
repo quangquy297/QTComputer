@@ -33,6 +33,7 @@ namespace QTComputer.Areas.Admin.Controllers
         {
             var lsOrders = _context.Orders.Include(o => o.Customer).Include(o => o.TransactStatus)
                 .AsNoTracking()
+                .Where(x => x.Deleted == false)
                 .OrderBy(x => x.OrderDate);
             return View(await lsOrders.ToListAsync());
         }
@@ -125,7 +126,7 @@ namespace QTComputer.Areas.Admin.Controllers
                             donhang.PaymentDate = DateTime.Now;
                         }
                         if (donhang.TransactStatusId == 5) donhang.Deleted = true;
-                        if (donhang.TransactStatusId == 3) donhang.ShipDate = DateTime.Now;
+                        if (donhang.TransactStatusId == 4) donhang.ShipDate = DateTime.Now;
                     }
                     _context.Update(donhang);
                     await _context.SaveChangesAsync();
@@ -240,6 +241,8 @@ namespace QTComputer.Areas.Admin.Controllers
                 return NotFound();
             }
             var order = await _context.Orders
+                .AsNoTracking()
+                .Include(x => x.Customer)
                 .FirstOrDefaultAsync(x => x.OrderId == id);
             if (order == null)
             {
@@ -254,7 +257,7 @@ namespace QTComputer.Areas.Admin.Controllers
             //    .ToList();
             //ViewBag.ChiTiet = Chitietdonhang;
 
-            return View(order);
+            return PartialView("Delete", order);
         }
 
         // POST: Admin/AdminOrders/Delete/5

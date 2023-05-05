@@ -27,7 +27,11 @@ public partial class Product
 
     public int? UnitsInStock { get; set; }
 
+    public int? SupplierId { get; set; }
+
     public virtual Category? Cat { get; set; }
 
     public virtual ICollection<OrderDetail> OrderDetails { get; } = new List<OrderDetail>();
+
+    public virtual Supplier? Supplier { get; set; }
 }

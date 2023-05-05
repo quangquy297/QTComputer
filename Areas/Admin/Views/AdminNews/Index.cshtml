@@ -1,15 +1,13 @@
-﻿@using PagedList.Core.Mvc
-@model PagedList.Core.IPagedList<QTComputer.Models.News>
+﻿@model List<QTComputer.Models.News>
 @{
-    int CurrentPage = ViewBag.CurrentPage;
-    ViewData["Title"] = "Danh sách Tin" + CurrentPage;
+    ViewData["Title"] = "Danh sách Tin tức";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="page-header">
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
             <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
-            <span class="breadcrumb-item active">Danh sách tin : Trang @CurrentPage</span>
+            <span class="breadcrumb-item active">Danh sách tin tức</span>
         </nav>
     </div>
 </div>
@@ -40,9 +38,10 @@
                     {
                         foreach (var item in Model)
                         {
+                            string url = $"/tin-tuc/{item.PostId}";
                             <tr>
                                 <td>@item.PostId</td>
-                                <td>@item.Title</td>
+                                <td><a href="@url">@item.Title</a></td>
                                 <td>
                                     @if (item.Published)
                                     {
@@ -62,7 +61,7 @@
                                 <td>
                                     <a class="btn btn-success m-r-5" asp-area="Admin" asp-controller="AdminNews" asp-action="Details" asp-route-id="@item.PostId">View</a>
                                     <a class="btn btn-primary m-r-5" asp-area="Admin" asp-controller="AdminNews" asp-action="Edit" asp-route-id="@item.PostId">Edit</a>
-                                    <a class="btn btn-secondary m-r-5" asp-area="Admin" asp-controller="AdminNews" asp-action="Delete" asp-route-id="@item.PostId">Delete</a>
+                                    <a data-target="#modal-delete" data-toggle="modal" class="btn btn-secondary m-r-5" asp-area="Admin" asp-controller="AdminNews" asp-action="Delete" asp-route-id="@item.PostId">Xoá</a>
                                 </td>
                             </tr>
                         }
@@ -72,14 +71,26 @@
         </div>
     </div>
 </div>
+<div id="modal-delete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+
 @section Scripts{
-
     <script>
-
         var js = jQuery.noConflict(true);
-        $(document).ready(function () {
-            $('#data-table').DataTable();
+        js(document).ready(function () {
+            js('#data-table').DataTable();
         });
     </script>
-
+    <script>
+        $('#modal-delete').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var url = button.attr("href");
+            var modal = $(this);
+            modal.find('.modal-content').load(url);
+        });
+    </script>
 }
