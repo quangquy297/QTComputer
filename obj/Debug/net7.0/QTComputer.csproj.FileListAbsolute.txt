@@ -1199,8 +1199,6 @@ D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\refs\Microsoft.AspNetCore.Componen
 D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\refs\Microsoft.AspNetCore.Connections.Abstractions.dll
 D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\refs\Microsoft.AspNetCore.CookiePolicy.dll
 D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\refs\Microsoft.AspNetCore.Cors.dll
-D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\refs\Microsoft.AspNetCore.Cryptography.Internal.dll
-D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\refs\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\refs\Microsoft.AspNetCore.DataProtection.Abstractions.dll
 D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\refs\Microsoft.AspNetCore.DataProtection.dll
 D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\refs\Microsoft.AspNetCore.DataProtection.Extensions.dll
@@ -1293,8 +1291,6 @@ D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\refs\Microsoft.Extensions.FileSyst
 D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\refs\Microsoft.Extensions.Hosting.Abstractions.dll
 D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\refs\Microsoft.Extensions.Hosting.dll
 D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\refs\Microsoft.Extensions.Http.dll
-D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\refs\Microsoft.Extensions.Identity.Core.dll
-D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\refs\Microsoft.Extensions.Identity.Stores.dll
 D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\refs\Microsoft.Extensions.Localization.Abstractions.dll
 D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\refs\Microsoft.Extensions.Localization.dll
 D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\refs\Microsoft.Extensions.Logging.Abstractions.dll
@@ -1549,8 +1545,6 @@ D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\NuGet.Packaging.dll
 D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\NuGet.ProjectModel.dll
 D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\NuGet.Protocol.dll
 D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\NuGet.Versioning.dll
-D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\PagedList.Core.dll
-D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\PagedList.Core.Mvc.dll
 D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\System.CodeDom.dll
 D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\System.Composition.AttributedModel.dll
 D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\System.Composition.Convention.dll
@@ -1760,3 +1754,6 @@ D:\DeTaiTotNghiep\QTComputer\obj\Debug\net7.0\refint\QTComputer.dll
 D:\DeTaiTotNghiep\QTComputer\obj\Debug\net7.0\QTComputer.pdb
 D:\DeTaiTotNghiep\QTComputer\obj\Debug\net7.0\QTComputer.genruntimeconfig.cache
 D:\DeTaiTotNghiep\QTComputer\obj\Debug\net7.0\ref\QTComputer.dll
+D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\JetBrains.Annotations.dll
+D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\X.PagedList.dll
+D:\DeTaiTotNghiep\QTComputer\bin\Debug\net7.0\X.PagedList.Mvc.Core.dll

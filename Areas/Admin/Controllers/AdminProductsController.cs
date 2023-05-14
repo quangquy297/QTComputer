@@ -7,7 +7,6 @@ using AspNetCoreHero.ToastNotification.Notyf;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using PagedList.Core;
 using QTComputer.Helper;
 using QTComputer.Models;
 
@@ -96,7 +95,7 @@ namespace QTComputer.Areas.Admin.Controllers
                     string image = Utilities.SEOUrl(product.ProductName) + extension;
                     product.Thumb = await Utilities.UploadFile(fThumb, @"products", image.ToLower());
                 }
-                if (string.IsNullOrEmpty(product.Thumb)) product.Thumb = "default.jpg";
+                if (string.IsNullOrEmpty(product.Thumb)) product.Thumb = "default.png";
                 product.DateModified = DateTime.Now;
                 product.DateCreated = DateTime.Now;
 
@@ -151,7 +150,7 @@ namespace QTComputer.Areas.Admin.Controllers
                         string image = Utilities.SEOUrl(product.ProductName) + extension;
                         product.Thumb = await Utilities.UploadFile(fThumb, @"products", image.ToLower());
                     }
-                    if (string.IsNullOrEmpty(product.Thumb)) product.Thumb = "default.jpg";
+                    if (string.IsNullOrEmpty(product.Thumb)) product.Thumb = "default.png";
                     product.DateModified = DateTime.Now;
 
                     _context.Update(product);

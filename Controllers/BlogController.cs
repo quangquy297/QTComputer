@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PagedList.Core;
 using QTComputer.Helper;
 using QTComputer.Models;
+using X.PagedList;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,14 +21,21 @@ namespace QTComputer.Controllers
         }
         // GET: /<controller>/
         [Route("tin-tuc", Name = ("Blog"))]
-        public IActionResult Index()
+        public IActionResult Index(int? page)
         {
+            try
+            {
+                var pageNumber = page ?? 1;
             var lsNews = _context.News
                 .AsNoTracking()
                 .OrderBy(x => x.PostId);
-            List<News> models = new List<News>(lsNews);
+            var models = lsNews.ToPagedList(pageNumber, 10);
             return View(models);
-
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         [Route("/tin-tuc/{id}", Name = "TinChiTiet")]
         public IActionResult Details(int id)

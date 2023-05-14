@@ -6,7 +6,6 @@ using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using PagedList.Core;
 using QTComputer.Helper;
 using QTComputer.Models;
 
@@ -74,7 +73,7 @@ namespace QTComputer.Areas.Admin.Controllers
                     string imageName = Utilities.SEOUrl(customer.FullName) + extension;
                     customer.Avatar = await Utilities.UploadFile(fAvatar, @"customer", imageName.ToLower());
                 }
-                if (string.IsNullOrEmpty(customer.Avatar)) customer.Avatar = "default.jpg";
+                if (string.IsNullOrEmpty(customer.Avatar)) customer.Avatar = "default.png";
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
                 _notifyService.Success("THÊM MỚI THÀNH CÔNG");
@@ -121,7 +120,7 @@ namespace QTComputer.Areas.Admin.Controllers
                         string imageName = Utilities.SEOUrl(customer.FullName) + extension;
                         customer.Avatar = await Utilities.UploadFile(fAvatar, @"customer", imageName.ToLower());
                     }
-                    if (string.IsNullOrEmpty(customer.Avatar)) customer.Avatar = "default.jpg";
+                    if (string.IsNullOrEmpty(customer.Avatar)) customer.Avatar = "default.png";
 
                     _context.Update(customer);
                     await _context.SaveChangesAsync();

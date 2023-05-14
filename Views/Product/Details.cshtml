@@ -8,17 +8,17 @@
 
 <!-- Begin Main Content Area  -->
 <main class="main-content">
-    <div class="breadcrumb-area breadcrumb-height" data-bg-image="~/assets/images/banner/2-1-1920x523.jpg">
+    <div class="breadcrumb-area breadcrumb-height" data-bg-image="/assets/images/slider/bg/bg1.jpg">
         <div class="container h-100">
             <div class="row h-100">
                 <div class="col-lg-12">
                     <div class="breadcrumb-item">
-                        <h1 class="breadcrumb-heading">@Model.ProductName</h1>
+                        <h1 style="color:aliceblue" class="breadcrumb-heading">@Model.ProductName</h1>
                         <ul>
                             <li>
-                                <a href="/">Trang chủ <i class="pe-7s-angle-right"></i></a>
+                                <a style="color:aliceblue" href="/">Trang chủ <i class="pe-7s-angle-right"></i></a>
                             </li>
-                            <li>@Model.ProductName</li>
+                            <li style="color:aliceblue">@Model.ProductName</li>
                         </ul>
                     </div>
                 </div>
@@ -77,9 +77,7 @@
                                             <li><i class="pe-7s-star"></i></li>
                                         </ul>
                                     </div>
-                                    <div class="review-status ps-4">
-                                        <a href="javascript:void(0)">( 1 Customer Review )</a>
-                                    </div>
+
                                 </div>
                                 <p class="short-desc mb-6">
                                     @Model.ShortDesc
@@ -137,17 +135,12 @@
                     <ul class="nav product-tab-nav product-tab-style-2" role="tablist">
                         <li class="nav-item" role="presentation">
                             <a class="active btn btn-custom-size" id="description-tab" data-bs-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">
-                                Mô tẢ
-                            </a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="btn btn-custom-size" id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">
-                                Reviews
+                                MÔ TẢ
                             </a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="btn btn-custom-size" id="shipping-tab" data-bs-toggle="tab" href="#shipping" role="tab" aria-controls="shipping" aria-selected="false">
-                                giao hàng
+                                CHÍNH SÁCH GIAO HÀNG
                             </a>
                         </li>
                     </ul>
@@ -157,127 +150,6 @@
                                 <p class="short-desc mb-0">
                                     @Html.Raw(Model.Description)
                                 </p>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                            <div class="product-review-body">
-                                <h4 class="heading mb-5">3 Review Items</h4>
-                                <ul class="user-info-wrap">
-                                    <li>
-                                        <ul class="user-info">
-                                            <li class="user-avatar">
-                                                <img src="~/assets/images/testimonial/user/1.png" alt="User Image">
-                                            </li>
-                                            <li class="user-comment">
-                                                <div class="rating-box">
-                                                    <ul>
-                                                        <li><i class="pe-7s-star"></i></li>
-                                                        <li><i class="pe-7s-star"></i></li>
-                                                        <li><i class="pe-7s-star"></i></li>
-                                                        <li><i class="pe-7s-star"></i></li>
-                                                        <li><i class="pe-7s-star"></i></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="meta">
-                                                    <span><strong>Oscar -</strong> March 15, 2021</span>
-                                                </div>
-                                                <p class="short-desc mb-0">
-                                                    “Sed ligula sapien, fermentum id est eget,
-                                                    viverra auctor sem. Vivamus maximus enim vitae urna porta, ut
-                                                    euismod nibh lacinia ellentesque at diam voluptas quas nisi, culpa
-                                                    in accusantium“
-                                                </p>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <ul class="user-info">
-                                            <li class="user-avatar">
-                                                <img src="~/assets/images/testimonial/user/1.png" alt="User Image">
-                                            </li>
-                                            <li class="user-comment">
-                                                <div class="rating-box">
-                                                    <ul>
-                                                        <li><i class="pe-7s-star"></i></li>
-                                                        <li><i class="pe-7s-star"></i></li>
-                                                        <li><i class="pe-7s-star"></i></li>
-                                                        <li><i class="pe-7s-star"></i></li>
-                                                        <li><i class="pe-7s-star"></i></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="meta">
-                                                    <span><strong>Oscar -</strong> March 15, 2021</span>
-                                                </div>
-                                                <p class="short-desc mb-0">
-                                                    “Sed ligula sapien, fermentum id est eget,
-                                                    viverra auctor sem. Vivamus maximus enim vitae urna porta, ut
-                                                    euismod nibh lacinia ellentesque at diam voluptas quas nisi, culpa
-                                                    in accusantium“
-                                                </p>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <ul class="user-info">
-                                            <li class="user-avatar">
-                                                <img src="~/assets/images/testimonial/user/1.png" alt="User Image">
-                                            </li>
-                                            <li class="user-comment">
-                                                <div class="rating-box">
-                                                    <ul>
-                                                        <li><i class="pe-7s-star"></i></li>
-                                                        <li><i class="pe-7s-star"></i></li>
-                                                        <li><i class="pe-7s-star"></i></li>
-                                                        <li><i class="pe-7s-star"></i></li>
-                                                        <li><i class="pe-7s-star"></i></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="meta">
-                                                    <span><strong>Oscar -</strong> March 15, 2021</span>
-                                                </div>
-                                                <p class="short-desc mb-0">
-                                                    “Sed ligula sapien, fermentum id est eget,
-                                                    viverra auctor sem. Vivamus maximus enim vitae urna porta, ut
-                                                    euismod nibh lacinia ellentesque at diam voluptas quas nisi, culpa
-                                                    in accusantium“
-                                                </p>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <div class="feedback-area pt-5">
-                                    <h2 class="heading mb-1">Add a review</h2>
-                                    <p class="short-desc mb-3">Your email address will not be published.</p>
-                                    <div class="rating-box">
-                                        <span>Your rating</span>
-                                        <ul class="ps-4">
-                                            <li><i class="pe-7s-star"></i></li>
-                                            <li><i class="pe-7s-star"></i></li>
-                                            <li><i class="pe-7s-star"></i></li>
-                                            <li><i class="pe-7s-star"></i></li>
-                                            <li><i class="pe-7s-star"></i></li>
-                                        </ul>
-                                    </div>
-                                    <form class="feedback-form pt-8" action="#">
-                                        <div class="group-input">
-                                            <div class="form-field me-md-6 mb-6 mb-md-0">
-                                                <input type="text" name="name" placeholder="Your Name*" class="input-field">
-                                            </div>
-                                            <div class="form-field me-md-6 mb-6 mb-md-0">
-                                                <input type="text" name="email" placeholder="Your Email*" class="input-field">
-                                            </div>
-                                            <div class="form-field">
-                                                <input type="text" name="number" placeholder="Phone number" class="input-field">
-                                            </div>
-                                        </div>
-                                        <div class="form-field mt-6">
-                                            <textarea name="message" placeholder="Message" class="textarea-field"></textarea>
-                                        </div>
-                                        <div class="button-wrap mt-8">
-                                            <button type="submit" value="submit" class="btn btn-custom-size lg-size btn-secondary btn-primary-hover btn-lg rounded-0" name="submit">Submit</button>
-                                        </div>
-                                    </form>
-                                </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="shipping" role="tabpanel" aria-labelledby="shipping-tab">

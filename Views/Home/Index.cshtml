@@ -179,8 +179,9 @@
                             @await Html.PartialAsync("_ListProductPartialView", item.lsProducts)
                         </div>
                     }
-
-
+                </div>
+                <div class="section-title text-center pb-55 pt-10">
+                    <a class="btn btn-primary btn-lg" href="/san-pham" role="button">Xem thêm</a>
                 </div>
             </div>
         </div>
@@ -188,7 +189,6 @@
 </div>
 
 <!-- Product Area End Here -->
-
 
 
 
@@ -218,15 +218,7 @@
                                         <div class="blog-content">
                                             <div class="blog-meta text-dim-gray pb-3">
                                                 <ul>
-                                                    <li class="date"><i class="fa fa-calendar-o me-2"></i>@item.CreatedDate</li>
-                                                    <li>
-                                                        <span class="comments me-3">
-                                                            <a href="javascript:void(0)">2 Comments</a>
-                                                        </span>
-                                                        <span class="link-share">
-                                                            <a href="javascript:void(0)">Chia sẻ</a>
-                                                        </span>
-                                                    </li>
+                                                    <li class="date"><i class="fa fa-calendar-o me-2"></i>@item.CreatedDate.Value.ToShortDateString()</li>
                                                 </ul>
                                             </div>
                                             <h5 class="title mb-4">

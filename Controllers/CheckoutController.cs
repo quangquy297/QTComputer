@@ -82,9 +82,7 @@ namespace QTComputer.Controllers
                     Order donhang = new Order();
                     donhang.CustomerId = model.CustomerId;
                     donhang.Address = model.Address;
-                    //donhang.LocationId = model.TinhThanh;
-                    //donhang.District = model.QuanHuyen;
-                    //donhang.Ward = model.PhuongXa;
+
 
                     donhang.OrderDate = DateTime.Now;
                     donhang.TransactStatusId = 1;//Don hang moi
@@ -106,12 +104,20 @@ namespace QTComputer.Controllers
                         orderDetail.Price = item.product.Price;
                         orderDetail.CreateDate = DateTime.Now;
                         _context.Add(orderDetail);
+
+                        var sanpham = _context.Products.FirstOrDefault(p => p.ProductId == item.product.ProductId);
+                        if (sanpham != null)
+                        {
+                            sanpham.UnitInStock -= item.amount;
+                            _context.Products.Update(sanpham);
+                        }
                     }
+                    
                     _context.SaveChanges();
                     //clear gio hang
                     HttpContext.Session.Remove("GioHang");
                     //Xuat thong bao
-                    _notyfService.Success("Đơn hàng đặt thành công");
+                    _notyfService.Success("Đặt hàng thành công");
                     //cap nhat thong tin khach hang
                     return RedirectToAction("Success");
 

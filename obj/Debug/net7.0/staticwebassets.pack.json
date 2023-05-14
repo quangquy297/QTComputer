@@ -4749,16 +4749,16 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\images\\category\\2.png",
-      "PackagePath": "staticwebassets\\images\\category\\2.png"
-    },
-    {
       "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\images\\category\\default.png",
       "PackagePath": "staticwebassets\\images\\category\\default.png"
     },
     {
-      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\images\\category\\pc.png",
-      "PackagePath": "staticwebassets\\images\\category\\pc.png"
+      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\images\\category\\mainboard.png",
+      "PackagePath": "staticwebassets\\images\\category\\mainboard.png"
+    },
+    {
+      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\images\\category\\monitor.png",
+      "PackagePath": "staticwebassets\\images\\category\\monitor.png"
     },
     {
       "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\images\\category\\pcc.png",

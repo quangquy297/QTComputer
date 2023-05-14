@@ -7,7 +7,6 @@ using AspNetCoreHero.ToastNotification.Notyf;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using PagedList.Core;
 using QTComputer.Helper;
 using QTComputer.Models;
 
@@ -73,7 +72,7 @@ namespace QTComputer.Areas.Admin.Controllers
                     string imageName = Utilities.SEOUrl(category.CatName) + extension;
                     category.Thumb = await Utilities.UploadFile(fThumb, @"category", imageName.ToLower());
                 }
-                if (string.IsNullOrEmpty(category.Thumb)) category.Thumb = "default.jpg";
+                if (string.IsNullOrEmpty(category.Thumb)) category.Thumb = "default.png";
                 _context.Add(category);
                 await _context.SaveChangesAsync();
                 _notifyService.Success("THÊM MỚI THÀNH CÔNG");
@@ -120,7 +119,7 @@ namespace QTComputer.Areas.Admin.Controllers
                         string imageName = Utilities.SEOUrl(category.CatName) + extension;
                         category.Thumb = await Utilities.UploadFile(fThumb, @"category", imageName.ToLower());
                     }
-                    if (string.IsNullOrEmpty(category.Thumb)) category.Thumb = "default.jpg";
+                    if (string.IsNullOrEmpty(category.Thumb)) category.Thumb = "default.png";
                     _context.Update(category);
                     await _context.SaveChangesAsync();
                     _notifyService.Success("Chỉnh sửa thành công");

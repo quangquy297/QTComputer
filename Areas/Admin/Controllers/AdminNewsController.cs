@@ -7,7 +7,6 @@ using AspNetCoreHero.ToastNotification.Notyf;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using PagedList.Core;
 using QTComputer.Helper;
 using QTComputer.Models;
 
@@ -75,7 +74,7 @@ namespace QTComputer.Areas.Admin.Controllers
                     string image = Utilities.SEOUrl(news.Title) + extension;
                     news.Thumb = await Utilities.UploadFile(fThumb, @"news", image.ToLower());
                 }
-                if (string.IsNullOrEmpty(news.Thumb)) news.Thumb = "default.jpg";
+                if (string.IsNullOrEmpty(news.Thumb)) news.Thumb = "default.png";
                 news.CreatedDate = DateTime.Now;
                 _context.Add(news);
                 await _context.SaveChangesAsync();
