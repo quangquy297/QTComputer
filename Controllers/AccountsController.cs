@@ -168,11 +168,16 @@ namespace QTComputer.Controllers
                         .AsNoTracking()
                         .SingleOrDefault(x => x.Email.Trim() == customer.UserName);
 
-                    if (khachhang == null) return RedirectToAction("DangkyTaiKhoan");
+                    if (khachhang == null)
+                    {
+                        _notyfService.Warning("Khách hàng không tồn tại");
+                        return View(customer);
+
+                    }
                     string pass = customer.Password.ToMD5();
                     if (khachhang.Password != pass)
                     {
-                        _notyfService.Success("Thông tin đăng nhập chưa chính xác");
+                        _notyfService.Error("Thông tin đăng nhập chưa chính xác");
                         return View(customer);
                     }
                     //kiem tra xem account co bi disable hay khong
@@ -248,10 +253,10 @@ namespace QTComputer.Controllers
             }
             catch
             {
-                _notyfService.Success("Thay đổi mật khẩu không thành công 1");
+                _notyfService.Error("Thay đổi mật khẩu không thành công 1");
                 return RedirectToAction("Dashboard", "Accounts");
             }
-            _notyfService.Success("Thay đổi mật khẩu không thành công 2");
+            _notyfService.Error("Thay đổi mật khẩu không thành công 2");
             return RedirectToAction("Dashboard", "Accounts");
         }
         [HttpGet]

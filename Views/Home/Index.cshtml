@@ -162,7 +162,7 @@
                         <li class="nav-item" role="presentation">
                             <a id="fresh-fruits-tab" data-bs-toggle="tab" href="#@item.category.Title" role="tab" aria-controls="fresh-fruits" aria-selected="false">
                                 <div class="product-tab-icon">
-                                    <img style="width:80%;height:auto" src="~/images/category/@item.category.Thumb" alt="@item.category.Title">
+                                    <img src="~/images/category/@item.category.Thumb" alt="@item.category.Title">
                                 </div>
                                 @item.category.CatName
                             </a>
@@ -171,13 +171,15 @@
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="all-items" role="tabpanel" aria-labelledby="all-items-tab">
-                        @await Html.PartialAsync("_ListProductPartialView", allProduct)
+
+                        @await Html.PartialAsync("_ListProductPartialView", allProduct.Take(12).ToList())
+
                     </div>
                     @foreach (var item in Model.Products)
                     {
-                        <div class="tab-pane fade" id="@item.category.Title" role="tabpanel" aria-labelledby="fresh-fruits-tab">
-                            @await Html.PartialAsync("_ListProductPartialView", item.lsProducts)
-                        </div>
+                            <div class="tab-pane fade" id="@item.category.Title" role="tabpanel" aria-labelledby="fresh-fruits-tab">
+                            @await Html.PartialAsync("_ListProductPartialView", item.lsProducts.Take(12).ToList())
+                            </div>
                     }
                 </div>
                 <div class="section-title text-center pb-55 pt-10">

@@ -68,7 +68,7 @@
                             <td>
                                 <a class="btn btn-primary btn-tone m-r-5" asp-area="Admin" asp-controller="AdminProducts" asp-action="Details" asp-route-id="@item.ProductId">Chi tiết</a>
                                 <a class="btn btn-secondary btn-tone m-r-5" asp-area="Admin" asp-controller="AdminProducts" asp-action="Edit" asp-route-id="@item.ProductId">Sửa</a>
-                                <a class="btn btn-success btn-tone m-r-5" asp-area="Admin" asp-controller="AdminProducts" asp-action="Delete" asp-route-id="@item.ProductId">Xóa</a>
+                                <a data-target="#modal-delete" data-toggle="modal" class="btn btn-success btn-tone m-r-5" asp-area="Admin" asp-controller="AdminProducts" asp-action="Delete" asp-route-id="@item.ProductId">Xoá</a>
                             </td>
                         </tr>
                     }
@@ -77,12 +77,26 @@
         </table>
     </div>
 </div>
+<div id="modal-delete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
 @section Scripts{
 
     <script>
         var js =jQuery.noConflict(true);
         js(document).ready(function () {
             js('#data-table').DataTable();
+        });
+    </script>
+    <script>
+        $('#modal-delete').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var url = button.attr("href");
+            var modal = $(this);
+            modal.find('.modal-content').load(url);
         });
     </script>
 }

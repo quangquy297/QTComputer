@@ -1,0 +1,22 @@
+﻿@model DateTime
+@{
+    ViewData["Title"] = "THỐNG KÊ";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>Thống kê số tiền bán được từ @ViewBag.FromDate đến @ViewBag.ToDate</h2>
+
+@using (Html.BeginForm("Index", "Sales", FormMethod.Post))
+{
+    <div class="form-group col-4">
+        <label for="fromDate">Từ ngày:</label>
+        <input type="date" name="fromDate" id="fromDate" class="form-control" required />
+    </div>
+    <div class="form-group col-4">
+        <label for="toDate">Đến ngày:</label>
+        <input type="date" name="toDate" id="toDate" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Thống kê</button>
+}
+
+<p>Tổng số tiền bán được: @ViewBag.TotalSales</p>
+

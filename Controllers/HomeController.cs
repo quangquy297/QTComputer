@@ -27,7 +27,7 @@ namespace QTComputer.Controllers
         {
             HomeVM model = new HomeVM();
 
-            var lsProducts = _context.Products.AsNoTracking().Take(10)
+            var lsProducts = _context.Products.AsNoTracking()/*.Take(10)*/
                 .OrderByDescending(x => x.DateCreated)
                 .ToList();
 

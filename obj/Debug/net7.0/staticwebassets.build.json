@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "pQXkCgqY5/us+nMpDQBt/9Z6OmpB5hr6l032cyI8rw8=",
+  "Hash": "7YOOOL5gE4wEF1GJ+fWLtJCbrs/mtkyGk9n47X+HlmU=",
   "Source": "QTComputer",
   "BasePath": "_content/QTComputer",
   "Mode": "Default",
@@ -18088,6 +18088,23 @@
       "OriginalItemSpec": "wwwroot\\assets\\images\\testimonial\\user\\1.png"
     },
     {
+      "Identity": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\images\\thanh-cong.jpeg",
+      "SourceId": "QTComputer",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\",
+      "BasePath": "_content/QTComputer",
+      "RelativePath": "assets/images/thanh-cong.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\thanh-cong.jpeg"
+    },
+    {
       "Identity": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\js\\main.js",
       "SourceId": "QTComputer",
       "SourceType": "Discovered",
@@ -20281,6 +20298,23 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\images\\category\\cpu.png",
+      "SourceId": "QTComputer",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\",
+      "BasePath": "_content/QTComputer",
+      "RelativePath": "images/category/cpu.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\category\\cpu.png"
+    },
+    {
       "Identity": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\images\\category\\default.png",
       "SourceId": "QTComputer",
       "SourceType": "Discovered",
@@ -20296,6 +20330,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\category\\default.png"
+    },
+    {
+      "Identity": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\images\\category\\hdd.png",
+      "SourceId": "QTComputer",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\",
+      "BasePath": "_content/QTComputer",
+      "RelativePath": "images/category/hdd.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\category\\hdd.png"
     },
     {
       "Identity": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\images\\category\\mainboard.png",
@@ -20332,12 +20383,12 @@
       "OriginalItemSpec": "wwwroot\\images\\category\\monitor.png"
     },
     {
-      "Identity": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\images\\category\\pcc.png",
+      "Identity": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\images\\category\\ram.png",
       "SourceId": "QTComputer",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\",
       "BasePath": "_content/QTComputer",
-      "RelativePath": "images/category/pcc.png",
+      "RelativePath": "images/category/ram.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -20346,15 +20397,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\category\\pcc.png"
+      "OriginalItemSpec": "wwwroot\\images\\category\\ram.png"
     },
     {
-      "Identity": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\images\\category\\speaker12.png",
+      "Identity": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\images\\category\\ssd.png",
       "SourceId": "QTComputer",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\",
       "BasePath": "_content/QTComputer",
-      "RelativePath": "images/category/speaker12.png",
+      "RelativePath": "images/category/ssd.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -20363,7 +20414,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\category\\speaker12.png"
+      "OriginalItemSpec": "wwwroot\\images\\category\\ssd.png"
     },
     {
       "Identity": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\images\\news\\default.jpg",

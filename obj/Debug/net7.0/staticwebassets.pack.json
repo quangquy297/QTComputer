@@ -4233,6 +4233,10 @@
       "PackagePath": "staticwebassets\\assets\\images\\testimonial\\user\\1.png"
     },
     {
+      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\images\\thanh-cong.jpeg",
+      "PackagePath": "staticwebassets\\assets\\images\\thanh-cong.jpeg"
+    },
+    {
       "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\js\\main.js",
       "PackagePath": "staticwebassets\\assets\\js\\main.js"
     },
@@ -4749,8 +4753,16 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\images\\category\\cpu.png",
+      "PackagePath": "staticwebassets\\images\\category\\cpu.png"
+    },
+    {
       "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\images\\category\\default.png",
       "PackagePath": "staticwebassets\\images\\category\\default.png"
+    },
+    {
+      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\images\\category\\hdd.png",
+      "PackagePath": "staticwebassets\\images\\category\\hdd.png"
     },
     {
       "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\images\\category\\mainboard.png",
@@ -4761,12 +4773,12 @@
       "PackagePath": "staticwebassets\\images\\category\\monitor.png"
     },
     {
-      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\images\\category\\pcc.png",
-      "PackagePath": "staticwebassets\\images\\category\\pcc.png"
+      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\images\\category\\ram.png",
+      "PackagePath": "staticwebassets\\images\\category\\ram.png"
     },
     {
-      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\images\\category\\speaker12.png",
-      "PackagePath": "staticwebassets\\images\\category\\speaker12.png"
+      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\images\\category\\ssd.png",
+      "PackagePath": "staticwebassets\\images\\category\\ssd.png"
     },
     {
       "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\images\\news\\default.jpg",

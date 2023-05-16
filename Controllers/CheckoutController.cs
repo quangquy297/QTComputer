@@ -78,6 +78,18 @@ namespace QTComputer.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    // kiểm tra số lượng tồn trước khi tạo đơn hàng
+                    foreach (var item in cart)
+                    {
+                        if (!CheckProductStock(item.product.ProductId, item.amount))
+                        {
+                            // Hiển thị thông báo lỗi nếu số lượng tồn không đủ
+                            _notyfService.Error($"Sản phẩm {item.product.ProductName} không đủ số lượng tồn");
+                            ViewBag.GioHang = cart;
+                            return View(model);
+                        }
+                    }
+
                     //Khoi tao don hang
                     Order donhang = new Order();
                     donhang.CustomerId = model.CustomerId;
@@ -108,7 +120,7 @@ namespace QTComputer.Controllers
                         var sanpham = _context.Products.FirstOrDefault(p => p.ProductId == item.product.ProductId);
                         if (sanpham != null)
                         {
-                            sanpham.UnitInStock -= item.amount;
+                            sanpham.UnitsInStock -= item.amount;
                             _context.Products.Update(sanpham);
                         }
                     }
@@ -132,6 +144,19 @@ namespace QTComputer.Controllers
             ViewBag.GioHang = cart;
             return View(model);
         }
+        private bool CheckProductStock(int productId, int amount)
+        {
+            var product = _context.Products.FirstOrDefault(p => p.ProductId == productId);
+            if (product != null && product.UnitsInStock >= amount)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         [Route("dat-hang-thanh-cong", Name = "Success")]
         public IActionResult Success()
         {
