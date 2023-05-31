@@ -28,8 +28,8 @@ namespace QTComputer.Controllers
                 var pageNumber = page ?? 1;
             var lsNews = _context.News
                 .AsNoTracking()
-                .OrderBy(x => x.PostId);
-            var models = lsNews.ToPagedList(pageNumber, 10);
+                .OrderByDescending(x => x.PostId);
+            var models = lsNews.ToPagedList(pageNumber, 6);
             return View(models);
             }
             catch (Exception)
@@ -45,6 +45,12 @@ namespace QTComputer.Controllers
             {
                 return RedirectToAction("Index");
             }
+            var lsBaivietlienquan = _context.News
+                .AsNoTracking()
+                .Where(x => x.Published == true && x.PostId != id)
+                .Take(3)
+                .OrderByDescending(x => x.CreatedDate).ToList();
+            ViewBag.Baivietlienquan = lsBaivietlienquan;
             return View(news);
         }
     }

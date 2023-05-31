@@ -3,21 +3,14 @@
     ViewData["Title"] = Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
     string url = $"/tin-tuc/{Model.Title}-{Model.PostId}";
+    List<News> Baivietlienquan = ViewBag.Baivietlienquan;
 }
 <main class="main-content">
-    <div class="breadcrumb-area breadcrumb-height" data-bg-image="/assets/images/slider/bg/bg1.jpg">
+    <div class="breadcrumb-area" style="height:120px">
         <div class="container h-100">
             <div class="row h-100">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-item">
-                        <h1 style="color:aliceblue" class="breadcrumb-heading">@Model.Title</h1>
-                        <ul>
-                            <li>
-                                <a style="color:aliceblue" href="/">Trang chủ <i class="pe-7s-angle-right"></i></a>
-                            </li>
-                            <li style="color:aliceblue">@Model.Title</li>
-                        </ul>
-                    </div>
+                <div class="breadcrumb-item">
+                    <h1 class="breadcrumb-heading">@Model.Title</h1>
                 </div>
             </div>
         </div>
@@ -27,9 +20,6 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="blog-detail-item">
-                        <div class="blog-img">
-                            <img class="img-full" src="~/images/news/@Model.Thumb" alt="@Model.Title">
-                        </div>
                         <div class="blog-content text-start pb-0">
                             <div class="blog-meta text-dim-gray pb-3">
                                 <ul>
@@ -44,6 +34,50 @@
                             </h5>
                             @Html.Raw(Model.Contents)
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="product-slider-area section-space-top-95 section-space-bottom-100">
+        <div class="container">
+            <div class="section-title text-center pb-55">
+                <span class="sub-title text-primary">Có thể bạn quan tâm</span>
+                <h2 class="title mb-0">Bài viết liên quan</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="swiper-slider-holder swiper-arrow">
+                        <div class="swiper-container product-slider border-issue">
+                            <div class="swiper-wrapper">
+                                @if (Baivietlienquan != null)
+                                {
+                                    foreach (var item in Baivietlienquan)
+                                    {
+                                        string _url = $"/tin-tuc/{Model.Title}-{Model.PostId}";
+                                        <div class="swiper-slide">
+                                            <div class="product-item">
+                                                <div class="product-img img-zoom-effect">
+                                                    <a href="@url">
+                                                        <img width="200" height="200" class="img-full" src="~/images/news/@item.Thumb" alt="@item.Title">
+                                                    </a>
+                                                </div>
+                                                <div class="product-content texx">
+                                                    <a class="product-name" href="@url">@item.Title</a>
+                                                    <div class="price-box pb-1">
+                                                        <span class="new-price">@item.CreatedDate</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+
+                            </div>
+                        </div>
+                        <!-- Add Arrows -->
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
                     </div>
                 </div>
             </div>
