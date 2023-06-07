@@ -125,7 +125,12 @@ namespace QTComputer.Areas.Admin.Controllers
                             donhang.PaymentDate = DateTime.Now;
                         }
                         if (donhang.TransactStatusId == 5) donhang.Deleted = true;
-                        if (donhang.TransactStatusId == 4) donhang.ShipDate = DateTime.Now;
+                        if (donhang.TransactStatusId == 4)
+                        {
+                            donhang.ShipDate = DateTime.Now;
+                            donhang.Paid = true;
+
+                        }
                     }
                     _context.Update(donhang);
                     await _context.SaveChangesAsync();
@@ -248,13 +253,6 @@ namespace QTComputer.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            //var Chitietdonhang = _context.OrderDetails
-            //    .Include(x => x.Product)
-            //    .AsNoTracking()
-            //    .Where(x => x.OrderId == order.OrderId)
-            //    .OrderBy(x => x.OrderDetailId)
-            //    .ToList();
-            //ViewBag.ChiTiet = Chitietdonhang;
 
             return PartialView("Delete", order);
         }

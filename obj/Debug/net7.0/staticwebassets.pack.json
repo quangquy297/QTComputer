@@ -3837,20 +3837,8 @@
       "PackagePath": "staticwebassets\\assets\\fonts\\fontawesome-webfont.woff2"
     },
     {
-      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\images\\about\\banner\\1-1-1920x598.jpg",
-      "PackagePath": "staticwebassets\\assets\\images\\about\\banner\\1-1-1920x598.jpg"
-    },
-    {
-      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\images\\about\\banner\\1920x500.jpg",
-      "PackagePath": "staticwebassets\\assets\\images\\about\\banner\\1920x500.jpg"
-    },
-    {
-      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\images\\about\\banner\\2-1-1920x500.jpg",
-      "PackagePath": "staticwebassets\\assets\\images\\about\\banner\\2-1-1920x500.jpg"
-    },
-    {
-      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\images\\about\\intro\\icon\\1-1-170x165.png",
-      "PackagePath": "staticwebassets\\assets\\images\\about\\intro\\icon\\1-1-170x165.png"
+      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\images\\about\\about-thumb.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\about\\about-thumb.jpg"
     },
     {
       "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\images\\about\\team\\1-1-370x350.jpg",
@@ -3863,62 +3851,6 @@
     {
       "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\images\\about\\team\\1-3-370x350.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\about\\team\\1-3-370x350.jpg"
-    },
-    {
-      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\images\\avatar\\1.jpg",
-      "PackagePath": "staticwebassets\\assets\\images\\avatar\\1.jpg"
-    },
-    {
-      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\images\\avatar\\2.jpg",
-      "PackagePath": "staticwebassets\\assets\\images\\avatar\\2.jpg"
-    },
-    {
-      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\images\\banner\\1-1-370x250.jpg",
-      "PackagePath": "staticwebassets\\assets\\images\\banner\\1-1-370x250.jpg"
-    },
-    {
-      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\images\\banner\\1-2-370x250.jpg",
-      "PackagePath": "staticwebassets\\assets\\images\\banner\\1-2-370x250.jpg"
-    },
-    {
-      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\images\\banner\\1-3-370x250.jpg",
-      "PackagePath": "staticwebassets\\assets\\images\\banner\\1-3-370x250.jpg"
-    },
-    {
-      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\images\\banner\\2-1-1920x523.jpg",
-      "PackagePath": "staticwebassets\\assets\\images\\banner\\2-1-1920x523.jpg"
-    },
-    {
-      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\images\\banner\\3-1-1920x582.jpg",
-      "PackagePath": "staticwebassets\\assets\\images\\banner\\3-1-1920x582.jpg"
-    },
-    {
-      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\images\\banner\\bg2.jpg",
-      "PackagePath": "staticwebassets\\assets\\images\\banner\\bg2.jpg"
-    },
-    {
-      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\images\\banner\\category-icon\\1.png",
-      "PackagePath": "staticwebassets\\assets\\images\\banner\\category-icon\\1.png"
-    },
-    {
-      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\images\\banner\\category-icon\\2.png",
-      "PackagePath": "staticwebassets\\assets\\images\\banner\\category-icon\\2.png"
-    },
-    {
-      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\images\\banner\\category-icon\\3.png",
-      "PackagePath": "staticwebassets\\assets\\images\\banner\\category-icon\\3.png"
-    },
-    {
-      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\images\\banner\\category-icon\\4.png",
-      "PackagePath": "staticwebassets\\assets\\images\\banner\\category-icon\\4.png"
-    },
-    {
-      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\images\\banner\\category-icon\\5.png",
-      "PackagePath": "staticwebassets\\assets\\images\\banner\\category-icon\\5.png"
-    },
-    {
-      "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\images\\banner\\inner-img\\2-1-503x430.png",
-      "PackagePath": "staticwebassets\\assets\\images\\banner\\inner-img\\2-1-503x430.png"
     },
     {
       "Id": "D:\\DeTaiTotNghiep\\QTComputer\\wwwroot\\assets\\images\\blog\\banner\\1-1-370x400.jpg",

@@ -56,13 +56,13 @@ namespace QTComputer.Areas.Admin.Controllers
 
                     if (acc == null)
                     {
-                        _notyfService.Success("Thông tin đăng nhập chưa chính xác");
+                        _notyfService.Error("Thông tin đăng nhập chưa chính xác");
                     }
                     string pass = (model.Password.Trim());
                     // + kh.Salt.Trim()
                     if (acc.Password.Trim() != pass)
                     {
-                        _notyfService.Error("Thông tin đăng nhập chưa chính xác pwd");
+                        _notyfService.Error("Thông tin đăng nhập chưa chính xác");
                         return View(model);
                     }
                     //đăng nhập thành công
@@ -99,10 +99,10 @@ namespace QTComputer.Areas.Admin.Controllers
             }
             catch
             {
-                _notyfService.Error("Đăng nhập không thành công 1");
+                //_notyfService.Error("Đăng nhập không thành công");
                 return RedirectToAction("AdminLogin", "AdminLogin", new { Area = "Admin" });
             }
-            _notyfService.Error("Đăng nhập không thành công 2");
+            _notyfService.Error("Đăng nhập không thành công");
             return RedirectToAction("AdminLogin", "AdminLogin", new { Area = "Admin" });
         }
         [Route("admin-logout", Name = "AdminLogout")]

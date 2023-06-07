@@ -41,7 +41,7 @@
                             </form>
                         </div>
                         <div class="widgets-area mb-9">
-                            <h2 class="widgets-title mb-5">Danh mục</h2>
+                            <h2 class="widgets-title mb-5" style="font-size:x-large">Danh mục</h2>
                             <div class="widgets-item">
                                 <ul class="widgets-checkbox">
                                     <form asp-controller="Product" asp-action="Index" method="get">
@@ -54,7 +54,7 @@
                                                            name="categoryId"
                                                            value="@category.CatId"
                                                     @(Model.Item1.SelectedCategories != null && Model.Item1.SelectedCategories.Contains(category.CatId) ? "checked" : "")>
-                                                    <label for="category-@category.CatId">@category.CatName</label>
+                                                    <label style="font-size:medium" for="category-@category.CatId">@category.CatName</label>
                                                 </li>
                                             }
                                         </ul>

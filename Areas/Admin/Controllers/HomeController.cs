@@ -8,10 +8,10 @@ namespace QTComputer.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            //if (!User.Identity.IsAuthenticated)
-            //{
-            //    return RedirectToAction("AdminLogin", "AdminLogin");
-            //}
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("AdminLogin", "AdminLogin");
+            }
             return View();
         }
     }

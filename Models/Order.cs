@@ -33,5 +33,5 @@ public partial class Order
 
     public virtual ICollection<OrderDetail> OrderDetails { get; } = new List<OrderDetail>();
 
-    public virtual TransactStatus TransactStatus { get; set; } = null!;
+    public virtual TransactStatus? TransactStatus { get; set; } = null!;
 }
