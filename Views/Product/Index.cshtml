@@ -130,19 +130,42 @@
                                                     <a href="@url">
                                                         <img class="img-full lozad" src="~/images/products/@item.Thumb" alt="@item.Title">
                                                     </a>
-                                                    <div class="product-add-action">
-                                                        <ul>
-                                                            <li>
-                                                                <a href="@url">
-                                                                    <i class="pe-7s-cart"></i>
-                                                                </a>
-                                                        </ul>
-                                                    </div>
+                                                    @if (item.UnitsInStock > 0)
+                                                    {
+                                                        <div>
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="@url">
+                                                                        <i class="pe-7s-cart"></i>
+                                                                    </a>
+                                                                 </li>
+                                                            </ul>
+                                                        </div>
+                                                    }else
+                                                    {
+                                                        <div class="product-add-action">
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="@url" class="btn btn-custom-size lg-size btn-primary btn-secondary-hover rounded-0" style="color:black">
+                                                                        Hết hàng
+                                                                    </a>
+                                                                </li>
+
+                                                            </ul>
+                                                        </div>
+                                                    }
+
                                                 </div>
                                                 <div class="product-content">
                                                     <a class="product-name" href="@url">@item.ProductName</a>
                                                     <div class="price-box pb-1">
-                                                        <span class="new-price">@item.Price.Value.ToString("#,##0") VNĐ</span>
+                                                        @if (item.UnitsInStock > 0)
+                                                        {
+                                                            <span class="new-price">@item.Price.Value.ToString("#,##0") VNĐ</span>
+                                                        }else
+                                                        {
+                                                            <span class="new-price">HẾT HÀNG</span>
+                                                        }
                                                     </div>
                                                     <div class="rating-box">
                                                         <ul>

@@ -14,16 +14,14 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="single-product-img h-100">
-                        <div class="swiper-container single-product-slider">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
+                        <div>
+                            <div>
+                                <div>
                                     <a href="~/images/products/@Model.Thumb" class="single-img gallery-popup">
                                         <img class="img-full" src="~/images/products/@Model.Thumb" alt="@Model.Title">
                                     </a>
                                 </div>
                             </div>
-                            <!-- Add Pagination -->
-                            <div class="swiper-pagination"></div>
                         </div>
                     </div>
                 </div>
@@ -58,10 +56,20 @@
                                             <div class="inc qtybutton"><i class="fa fa-plus"></i></div>
                                         </div>
                                     </li>
-                                    <li class="add-to-cart">
-                                        <a class="btn btn-custom-size lg-size btn-primary btn-secondary-hover rounded-0" href="javascript:void(0)">Thêm vào giỏ hàng</a>
-                                        <input hidden asp-for="ProductId" />
-                                    </li>
+                                    @if (Model.UnitsInStock > 0)
+                                    {
+                                        <li class="add-to-cart">
+                                            <a class="btn btn-custom-size lg-size btn-primary btn-secondary-hover rounded-0" href="javascript:void(0)">Thêm vào giỏ hàng</a>
+                                            <input hidden asp-for="ProductId" />
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <h2>HẾT HÀNG</h2>
+                                        </li>
+
+                                    }
                                 </ul>
                             </div>
                         </div>
