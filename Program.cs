@@ -36,6 +36,7 @@ builder.Services.AddNotyf(config =>
 var connectionString = builder.Configuration.GetConnectionString("dbComputerStore");
 builder.Services.AddDbContext<DbComputerContext>(option => option.UseSqlServer(connectionString));
 
+
 // Build the app.
 var app = builder.Build();
 

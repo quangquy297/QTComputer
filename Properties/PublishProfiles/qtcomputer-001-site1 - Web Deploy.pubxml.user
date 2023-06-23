@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPlP6QEvd5UuoUjDDnohqwQAAAAACAAAAAAAQZgAAAAEAACAAAABUopv2RggsGCE0pjW2ESNZrdieh6tLppvQBoyBJdv8sQAAAAAOgAAAAAIAACAAAAD4gr2UjPCLYuL6zQcCP/rEoKPRXCevdnV4b8/wafK5YCAAAAB4LPhEqiFG2omKb6sQ8SP+4NCix3S41sw0GvkTf+aJu0AAAAAWm31Tv2yaT5HQLR/jinKwlrZ/C2JtwyWBgG9g/O++WoAvEzlgfiTmFmjVeGucUXXXABKhnwFyQjqAvc13Nzry</EncryptedPassword>
+    <History>True|2023-06-23T09:45:52.6798993Z;True|2023-06-18T14:00:38.9752580+07:00;True|2023-06-18T13:35:07.3347479+07:00;True|2023-06-18T11:03:35.2071545+07:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="dbComputerStore">
+      <Value>Server=SQL5106.site4now.net,1433%3bInitial Catalog=db_a9afa8_login%3bUser Id=db_a9afa8_login_admin%3bPassword=lionquy23%3bIntegrated Security=false%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>
